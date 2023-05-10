@@ -1,4 +1,3 @@
-import React from "react";
 import { Row, Typography } from "antd";
 import SkeletonAvatar from "antd/es/skeleton/Avatar";
 
@@ -7,7 +6,7 @@ interface Data {
   address: String,
   distance: Number,
 }
-function App() {
+function Shop() {
   const data: Data[] = [
     {
       name: "세탁소1",
@@ -46,4 +45,4 @@ function App() {
   );
 }
 
-export default App;
+export default Shop;
