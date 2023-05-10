@@ -1,5 +1,5 @@
-import { Row, Typography } from "antd";
-import SkeletonAvatar from "antd/es/skeleton/Avatar";
+import { Card } from "antd";
+import Meta from "antd/es/card/Meta";
 
 interface Data {
   name: String,
@@ -14,17 +14,17 @@ function Shop() {
       distance: 0.3,
     },
     {
-      name: "세탁소1",
+      name: "세탁소2",
       address: "서울시 성북구 돈암동 세탁소로1길",
       distance: 0.3,
     },
     {
-      name: "세탁소1",
+      name: "세탁소3",
       address: "서울시 성북구 돈암동 세탁소로1길",
       distance: 0.3,
     },
     {
-      name: "세탁소1",
+      name: "세탁소4",
       address: "서울시 성북구 돈암동 세탁소로1길",
       distance: 0.345,
     },
@@ -34,11 +34,13 @@ function Shop() {
     <>
       {
         data.map(item =>
-          <Row>
-            <SkeletonAvatar/>
-            <Typography>{item.name}</Typography>
-            <Typography>{item.address}</Typography>
-          </Row>
+          <Card
+            hoverable
+            style={{ width: 240 }}
+            cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+          >
+            <Meta title="Europe Street beat" description="www.instagram.com" />
+          </Card>
         )
       }
     </>
