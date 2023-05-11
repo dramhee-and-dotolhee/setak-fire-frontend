@@ -1,7 +1,7 @@
 function MyPage () {
   return (
     <>
-      Cart
+      mypage
     </>
   )
 }
