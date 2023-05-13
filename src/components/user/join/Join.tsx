@@ -1,7 +1,7 @@
 function Join () {
   return (
     <>
-      Cart
+      join
     </>
   )
 }
