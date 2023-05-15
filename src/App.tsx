@@ -1,15 +1,15 @@
 import React from "react";
-// import NavBar from "./components/home/NavBar";
-// import { Outlet } from "react-router-dom";
-import Bottom from "./components/home/RouterEx"
+import { Outlet } from "react-router-dom";
+import Bottom from "./components/home/Bottom";
+import * as styles from "./style/layout.css";
+
 
 function App() {
   return (
-    <>
-      {/*<Outlet />*/}
-      {/*<NavBar />*/}
+    <div style={styles.app}>
+      <Outlet />
       <Bottom />
-    </>
+    </div>
   );
 }
 
