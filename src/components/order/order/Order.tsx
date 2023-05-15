@@ -1,7 +1,7 @@
 function Order () {
   return (
     <>
-      Cart
+      order
     </>
   )
 }

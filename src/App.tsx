@@ -1,10 +1,14 @@
 import React from "react";
-import Shop from "./components/shop/Shop";
+// import NavBar from "./components/home/NavBar";
+// import { Outlet } from "react-router-dom";
+import Bottom from "./components/home/RouterEx"
+
 function App() {
   return (
     <>
-      setak-fire
-      <Shop />
+      {/*<Outlet />*/}
+      {/*<NavBar />*/}
+      <Bottom />
     </>
   );
 }
