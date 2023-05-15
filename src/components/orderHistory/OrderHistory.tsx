@@ -1,7 +1,7 @@
 function OrderHistory () {
   return (
     <>
-      Cart
+      orderHistory
     </>
   )
 }
