@@ -34,13 +34,12 @@ function Bottom () {
     },
   ]
 
-
   return (
     <>
       <TabBar
         activeKey={pathname}
         onChange={path => changePath(path)}
-        style={{flex: 0, borderTop: 'solid 1px black'
+        style={{ position: "fixed", bottom: 0, width: "100%", borderTop: "1px solid black", height: "50px", paddingTop: "10px"
         }}
       >
         {tabs.map(item => (
