@@ -1,4 +1,4 @@
-import {Card, Swiper} from "antd-mobile";
+import { Card, Swiper } from "antd-mobile";
 
 interface Data {
   id: number,
@@ -14,7 +14,7 @@ interface Data {
   createdAt: string,
   updateAt: string,
   x: number,
-  y: Number
+  y: number
 }
 
 function Shop() {
@@ -106,14 +106,14 @@ function Shop() {
   ]
 
   return (
-    <div style={{backgroundColor: 'red'}}>
+    <div style={{ backgroundColor: 'red' }}>
       <h1>현 위치</h1>
       {
         data.map(item =>
           <Card
-            style={{ padding: '10px', margin: '10px', display: 'flex', flexDirection: 'row' }}
+            bodyStyle={{ padding: '10px', margin: '10px', display: 'flex', flexDirection: 'row' }}
           >
-            <div>
+            <div style = {{ width:'50%' }}>
               <Swiper
                 stuckAtBoundary={false}
                 slideSize={100}
@@ -121,16 +121,15 @@ function Shop() {
                 autoplay
                 autoplayInterval={1500}
                 loop
-                style={{width: '50%'}}
               >
                 {item.imageUrls.map(imageUrl =>
-                <Swiper.Item style={{margin: '0 auto'}}>
-                  {<img src={imageUrl} alt = "laundryImage" style={{width: '60px'}} />}
+                <Swiper.Item>
+                  {<img src={imageUrl} alt = "laundryImage" style={{ width: '80%' }}/>}
                 </Swiper.Item>
                 )}
               </Swiper>
             </div>
-            <div>
+            <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '30px' }}>
               <p>거리 : {item.deliveryCharge}</p>
               <p>수거비용 : {item.deliveryCharge}</p>
               <p>항목 : {item.categoryTypes}</p>
