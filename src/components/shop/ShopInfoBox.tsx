@@ -20,7 +20,6 @@ export default function ShopInfoBox({shop}: { shop: ShopData }) {
     "PREMIUM": "danger",
   }
 
-
   // 수거 여부
   const handleDelivery = (isAvailableDelivery: boolean) => {
     const color = isAvailableDelivery ? "blue" : "red"
@@ -28,17 +27,16 @@ export default function ShopInfoBox({shop}: { shop: ShopData }) {
 
     return (
       <Space>
-        <Tag color={color} round  fill='outline' >{text}</Tag>
+        <Tag color={color} round fill="outline">{text}</Tag>
       </Space>
     )
   }
 
-
   return (
     <Grid columns={2} gap={8} style={{marginLeft: '2rem'}}>
       <p>{shop.deliveryCharge} 떨어져 있어요</p>
-      <p>수거비용  {shop.deliveryCharge}</p>
-      <p>최소비용  {shop.minimumCharge}</p>
+      <p>수거비용 {shop.deliveryCharge}</p>
+      <p>최소비용 {shop.minimumCharge}</p>
       {handleDelivery(shop.isAvailableDelivery)}
       <div>
         {shop.categoryTypes.map(type =>
