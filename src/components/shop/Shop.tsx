@@ -1,24 +1,12 @@
-import { Card, Swiper } from "antd-mobile";
+import {Card, Image, Swiper, Tag} from "antd-mobile";
+import ShopData from "../../interfaces/ShopData";
+import ShopInfoBox from "./ShopInfoBox";
 
-interface Data {
-  id: number,
-  name: string,
-  imageUrls: string[],
-  partnerId: number,
-  isAvailableDelivery: boolean,
-  categoryTypes: string[],
-  minimumCharge: number,
-  minimumUnit: number,
-  deliveryCharge: number,
-  address: string,
-  createdAt: string,
-  updateAt: string,
-  x: number,
-  y: number
-}
 
 function Shop() {
-  const data: Data[] = [
+
+  // API 호출 (임시 데이터)
+  const data: ShopData[] = [
     {
       "id": 1,
       "name": "불세탁람쥐",
@@ -50,7 +38,7 @@ function Shop() {
       "partnerId": 2,
       "isAvailableDelivery": true,
       "categoryTypes": [
-        "CLEANING"
+        "CLEANING", "REFORM", "MENDING"
       ],
       "minimumCharge": 5000,
       "minimumUnit": 1,
@@ -71,7 +59,7 @@ function Shop() {
       "partnerId": 3,
       "isAvailableDelivery": true,
       "categoryTypes": [
-        "CLEANING"
+        "CLEANING", "PREMIUM"
       ],
       "minimumCharge": 5000,
       "minimumUnit": 1,
@@ -92,7 +80,7 @@ function Shop() {
       "partnerId": 4,
       "isAvailableDelivery": true,
       "categoryTypes": [
-        "CLEANING"
+        "CLEANING", "MENDING",
       ],
       "minimumCharge": 5000,
       "minimumUnit": 15,
@@ -109,38 +97,34 @@ function Shop() {
     <div style={{ backgroundColor: 'red' }}>
       <h1>현 위치</h1>
       {
-        data.map(item =>
+        data.map(shop =>
           <Card
+            title={shop.name}
             bodyStyle={{ padding: '10px', margin: '10px', display: 'flex', flexDirection: 'row' }}
           >
-            <div style = {{ width:'50%' }}>
+            <div style = {{ width: '30%', alignSelf: 'center' }}>
               <Swiper
                 stuckAtBoundary={false}
                 slideSize={100}
                 defaultIndex={0}
                 autoplay
                 autoplayInterval={1500}
+                indicator={() => null}
                 loop
               >
-                {item.imageUrls.map(imageUrl =>
+                {shop.imageUrls.map(imageUrl =>
                 <Swiper.Item>
-                  {<img src={imageUrl} alt = "laundryImage" style={{ width: '80%' }}/>}
+                  {<Image src={imageUrl}  width={90}  style={{ margin: '0 auto' }}/>}
                 </Swiper.Item>
                 )}
               </Swiper>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '30px' }}>
-              <p>거리 : {item.deliveryCharge}</p>
-              <p>수거비용 : {item.deliveryCharge}</p>
-              <p>항목 : {item.categoryTypes}</p>
-              <p>최소비용 : {item.minimumCharge}</p>
-              <p>수거비용 : {item.deliveryCharge}</p>
-            </div>
+            <ShopInfoBox shop={shop} />
           </Card>
         )
       }
     </div>
-  );
+  )
 }
 
 export default Shop;
