@@ -28,7 +28,7 @@ export default function ShopInfoBox({shop}: { shop: ShopData }) {
 
     return (
       <Space>
-        <Tag color={color} round >{text}</Tag>
+        <Tag color={color} round  fill='outline' >{text}</Tag>
       </Space>
     )
   }
