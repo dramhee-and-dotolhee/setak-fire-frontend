@@ -1,5 +1,5 @@
 import ShopData from "../../interfaces/ShopData";
-import {Space, Tag} from "antd-mobile";
+import {Grid, Space, Tag} from "antd-mobile";
 
 interface CategoryColorType {
   CLEANING: string;
@@ -20,17 +20,33 @@ export default function ShopInfoBox({shop}: { shop: ShopData }) {
     "PREMIUM": "danger",
   }
 
+
+  // 수거 여부
+  const handleDelivery = (isAvailableDelivery: boolean) => {
+    const color = isAvailableDelivery ? "blue" : "red"
+    const text = isAvailableDelivery ? "수거가능" : "수거불가"
+
+    return (
+      <Space>
+        <Tag color={color} round >{text}</Tag>
+      </Space>
+    )
+  }
+
+
   return (
-    <div style={{display: 'flex', flexDirection: 'column', marginLeft: '30px'}}>
-      <p>거리(임시) : {shop.deliveryCharge}</p>
-      <p>수거비용 : {shop.deliveryCharge}</p>
-      {shop.categoryTypes.map(type =>
-        <Space>
-          <Tag color={categoryColor[type]} round>{type}</Tag>
-        </Space>
-      )}
-      <p>최소비용 : {shop.minimumCharge}</p>
-      <p>수거비용 : {shop.deliveryCharge}</p>
-    </div>
+    <Grid columns={2} gap={8} style={{marginLeft: '2rem'}}>
+      <p>{shop.deliveryCharge} 떨어져 있어요</p>
+      <p>수거비용  {shop.deliveryCharge}</p>
+      <p>최소비용  {shop.minimumCharge}</p>
+      {handleDelivery(shop.isAvailableDelivery)}
+      <div>
+        {shop.categoryTypes.map(type =>
+          <Space>
+            <Tag color={categoryColor[type]} round style={{margin: '0.15rem'}}>{type}</Tag>
+          </Space>
+        )}
+      </div>
+    </Grid>
   )
 }

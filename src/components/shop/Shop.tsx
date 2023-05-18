@@ -1,4 +1,4 @@
-import {Card, Image, Swiper, Tag} from "antd-mobile";
+import { Card, Image, Swiper } from "antd-mobile";
 import ShopData from "../../interfaces/ShopData";
 import ShopInfoBox from "./ShopInfoBox";
 
@@ -36,7 +36,7 @@ function Shop() {
         "https://cdn-icons-png.flaticon.com/256/7029/7029382.png"
       ],
       "partnerId": 2,
-      "isAvailableDelivery": true,
+      "isAvailableDelivery": false,
       "categoryTypes": [
         "CLEANING", "REFORM", "MENDING"
       ],
