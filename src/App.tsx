@@ -1,16 +1,13 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Bottom from "./components/home/Bottom";
-import Shop from "./components/shop/Shop";
-
 
 function App() {
   return (
-    <>
-      <Shop />
+    <div style={{ paddingBottom: '3rem', backgroundColor: 'lightblue'}}>
       <Outlet />
       <Bottom />
-    </>
+    </div>
   );
 }
 

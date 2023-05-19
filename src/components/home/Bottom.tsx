@@ -1,11 +1,11 @@
-import { AppOutline, MessageOutline, UnorderedListOutline, UserOutline } from 'antd-mobile-icons'
-import { useLocation, useNavigate} from "react-router-dom";
-import { TabBar } from "antd-mobile";
+import {AppOutline, MessageOutline, UnorderedListOutline, UserOutline} from 'antd-mobile-icons'
+import {useLocation, useNavigate} from "react-router-dom";
+import {TabBar} from "antd-mobile";
 
-function Bottom () {
+function Bottom() {
   const navigate = useNavigate();
   const location = useLocation()
-  const { pathname } = location
+  const {pathname} = location
 
   const changePath = (path: string) => {
     navigate(path);
@@ -15,22 +15,22 @@ function Bottom () {
     {
       key: '/home',
       title: '홈',
-      icon: <AppOutline />,
+      icon: <AppOutline/>,
     },
     {
       key: '/shop',
       title: '내 근처',
-      icon: <UnorderedListOutline />,
+      icon: <UnorderedListOutline/>,
     },
     {
       key: '/order-history',
       title: '이용내역',
-      icon: <MessageOutline />,
+      icon: <MessageOutline/>,
     },
     {
       key: '/my-page',
       title: '마이페이지',
-      icon: <UserOutline />,
+      icon: <UserOutline/>,
     },
   ]
 
@@ -39,11 +39,18 @@ function Bottom () {
       <TabBar
         activeKey={pathname}
         onChange={path => changePath(path)}
-        style={{ position: "fixed", bottom: 0, width: "100vw", borderTop: "1px solid black", height: "50px", paddingTop: "10px"
+        style={{
+          position: 'fixed',
+          bottom: 0,
+          width: '100vw',
+          borderTop: '1px solid black',
+          height: '5vh',
+          paddingTop: '0.5rem',
+          backgroundColor: 'white'
         }}
       >
         {tabs.map(item => (
-          <TabBar.Item key={item.key} icon={item.icon} title={item.title} />
+          <TabBar.Item key={item.key} icon={item.icon} title={item.title}/>
         ))}
       </TabBar>
     </>

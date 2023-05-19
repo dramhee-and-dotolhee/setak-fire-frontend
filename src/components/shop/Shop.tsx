@@ -1,6 +1,7 @@
-import { Card, Image, Swiper } from "antd-mobile";
+import {Card, Image, Swiper} from "antd-mobile";
 import ShopData from "../../interfaces/ShopData";
 import ShopInfoBox from "./ShopInfoBox";
+import MapView from "../map/MapView";
 
 
 function Shop() {
@@ -94,35 +95,39 @@ function Shop() {
   ]
 
   return (
-    <div style={{ backgroundColor: 'red' }}>
-      <h1>현 위치</h1>
-      {
-        data.map(shop =>
-          <Card
-            title={shop.name}
-            bodyStyle={{ padding: '10px', margin: '10px', display: 'flex', flexDirection: 'row' }}
-          >
-            <div style = {{ width: '30%', alignSelf: 'center' }}>
-              <Swiper
-                stuckAtBoundary={false}
-                slideSize={100}
-                defaultIndex={0}
-                autoplay
-                autoplayInterval={1500}
-                indicator={() => null}
-                loop
-              >
-                {shop.imageUrls.map(imageUrl =>
-                <Swiper.Item>
-                  {<Image src={imageUrl}  width={90}  style={{ margin: '0 auto' }}/>}
-                </Swiper.Item>
-                )}
-              </Swiper>
-            </div>
-            <ShopInfoBox shop={shop} />
-          </Card>
-        )
-      }
+    <div style={{backgroundColor: 'blue'}}>
+      <MapView/>
+      <div style={{display: 'flex', flexDirection: 'column'}}>
+        <h1 style={{flex: 1, margin: '2rem'}}>현 위치</h1>
+        {
+          data.map(shop =>
+            <Card
+              title={shop.name}
+              style={{flex: 1, margin: '2rem'}}
+              bodyStyle={{padding: '2rem', display: 'flex', flexDirection: 'row'}}
+            >
+              <div style={{width: '30%', alignSelf: 'center'}}>
+                <Swiper
+                  stuckAtBoundary={false}
+                  slideSize={100}
+                  defaultIndex={0}
+                  autoplay
+                  autoplayInterval={1500}
+                  indicator={() => null}
+                  loop
+                >
+                  {shop.imageUrls.map(imageUrl =>
+                    <Swiper.Item>
+                      {<Image src={imageUrl} width={90} style={{margin: '0 auto'}}/>}
+                    </Swiper.Item>
+                  )}
+                </Swiper>
+              </div>
+              <ShopInfoBox shop={shop}/>
+            </Card>
+          )
+        }
+      </div>
     </div>
   )
 }
