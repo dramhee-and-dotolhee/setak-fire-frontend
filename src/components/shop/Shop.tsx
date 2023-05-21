@@ -1,7 +1,6 @@
 import {Card, Image, Swiper} from "antd-mobile";
 import ShopData from "../../interfaces/ShopData";
 import ShopInfoBox from "./ShopInfoBox";
-import MapView2 from "../map/MapView2";
 import MapView from "../map/MapView";
 
 
