@@ -39,8 +39,8 @@ export default function ShopInfoBox({shop}: { shop: ShopData }) {
       <p>최소비용 {shop.minimumCharge}</p>
       {handleDelivery(shop.isAvailableDelivery)}
       <div>
-        {shop.categoryTypes.map(type =>
-          <Space>
+        {shop.categoryTypes.map((type, i) =>
+          <Space key={i}>
             <Tag color={categoryColor[type]} round style={{margin: '0.15rem'}}>{type}</Tag>
           </Space>
         )}

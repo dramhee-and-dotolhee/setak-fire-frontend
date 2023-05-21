@@ -1,6 +1,7 @@
 import {Card, Image, Swiper} from "antd-mobile";
 import ShopData from "../../interfaces/ShopData";
 import ShopInfoBox from "./ShopInfoBox";
+import MapView2 from "../map/MapView2";
 import MapView from "../map/MapView";
 
 
@@ -96,12 +97,15 @@ function Shop() {
 
   return (
     <div style={{backgroundColor: 'blue'}}>
-      <MapView/>
+      <MapView />
+
+      {/*<MapView2 />*/}
       <div style={{display: 'flex', flexDirection: 'column'}}>
         <h1 style={{flex: 1, margin: '2rem'}}>현 위치</h1>
         {
           data.map(shop =>
             <Card
+              key={shop.id}
               title={shop.name}
               style={{flex: 1, margin: '2rem'}}
               bodyStyle={{padding: '2rem', display: 'flex', flexDirection: 'row'}}
@@ -116,14 +120,14 @@ function Shop() {
                   indicator={() => null}
                   loop
                 >
-                  {shop.imageUrls.map(imageUrl =>
-                    <Swiper.Item>
+                  {shop.imageUrls.map((imageUrl, i) =>
+                    <Swiper.Item key={i}>
                       {<Image src={imageUrl} width={90} style={{margin: '0 auto'}}/>}
                     </Swiper.Item>
                   )}
                 </Swiper>
               </div>
-              <ShopInfoBox shop={shop}/>
+              <ShopInfoBox shop={shop} />
             </Card>
           )
         }
