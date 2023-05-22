@@ -1,4 +1,5 @@
-import React, {useEffect} from 'react';
+import React, {useEffect} from "react";
+
 
 declare global {
   interface Window {
@@ -7,39 +8,43 @@ declare global {
   }
 }
 
-const MapView = () => {
+
+function MapView() {
+
+  // MapView component에 들어오면 index.html에 script 추가
   useEffect(() => {
-    /** 진입시, head 태그안에 아래 스크립트 태그 append
-     이렇게 안하고, index.html <head>안에 직접 추가 가능
-     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=%REACT_APP_KAKAO_API_JS_KEY%"/>
-     추가해도 됨
-     **/
     const mapScript = document.createElement("script");
     mapScript.async = true;
-    mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAO_API_JS_KEY}&autoload=false`;
+    mapScript.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=ffb325c509b03c51c71c799ed587def2&autoload=false"
     document.head.appendChild(mapScript);
 
-    // 중심 세팅해서 카카오맵을 화면에 로드하는 함수
-    const loadKakaoMap = () => {
+    const loadMap = () => {
       window.kakao.maps.load(() => {
-        let container = document.getElementById("map")
-        let options = {
-          center: new window.kakao.maps.LatLng(33.450701, 126.570667),
-          level: 3
-        };
-        // container안에 해당 options로 맵 객체 생성
-        let map = new window.kakao.maps.Map(container, options);
-      })
+          let container = document.getElementById('map');
+          let options = {
+            // 지도 생성에 필요한 기본 옵션
+            center: new window.kakao.maps.LatLng(37.541, 126.986),
+            level: 5
+          }
+
+          let map = new window.kakao.maps.Map(container, options)
+        }
+      )
     }
 
-    // mapScript가 로드될때, 카카오맵을 로드하는 함수 실행
-    mapScript.addEventListener("load", loadKakaoMap);
-  }, []);
+    mapScript.addEventListener('load', loadMap);
+
+    return () => {
+      document.head.removeChild(mapScript);
+    };
+  }, [])
+
+
   return (
     <div style={{ display: 'flex', height: '30vh' }}>
       <div id="map" style={{ flex: 1, margin: '2rem' }}/>
     </div>
-  );
+  )
 }
 
-export default MapView
+export default MapView;
