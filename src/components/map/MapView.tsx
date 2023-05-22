@@ -15,7 +15,7 @@ function MapView() {
   useEffect(() => {
     const mapScript = document.createElement("script");
     mapScript.async = true;
-    mapScript.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=ffb325c509b03c51c71c799ed587def2&autoload=false"
+    mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAO_API_JS_KEY}&autoload=false`
     document.head.appendChild(mapScript);
 
     const loadMap = () => {
