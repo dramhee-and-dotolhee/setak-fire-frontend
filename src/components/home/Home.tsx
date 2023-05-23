@@ -1,7 +1,9 @@
+import PostCode from "../map/PostCode";
+
 function Home () {
   return (
     <>
-      Home
+      <PostCode />
     </>
   )
 }
