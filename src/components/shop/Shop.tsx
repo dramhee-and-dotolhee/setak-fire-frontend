@@ -2,6 +2,7 @@ import {Card, Image, Swiper} from "antd-mobile";
 import ShopData from "../../interfaces/ShopData";
 import ShopInfoBox from "./ShopInfoBox";
 import MapView from "../map/MapView";
+import {useEffect} from "react";
 
 
 function Shop() {
@@ -93,6 +94,19 @@ function Shop() {
       "y": 1000.0
     }
   ]
+
+  const apiHost: string = process.env.REACT_APP_API_HOST_URL!!;
+
+  useEffect(() => {
+    const config = {
+      method: 'GET',
+    }
+
+    fetch(apiHost, config)
+      .then(res => console.log(res));
+
+
+  }, [])
 
   return (
     <div style={{backgroundColor: 'blue'}}>
