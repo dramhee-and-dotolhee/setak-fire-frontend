@@ -98,13 +98,16 @@ function Shop() {
   const apiHost: string = process.env.REACT_APP_API_HOST_URL!!;
 
   useEffect(() => {
-    const config = {
-      method: 'GET',
-    }
+    // const config = {
+    //   method: 'GET',
+    // }
+    //
+    // fetch(apiHost, config)
+    //   .then(res => console.log(res));
 
-    fetch(apiHost, config)
-      .then(res => console.log(res));
 
+    fetch("http://localhost:8080/api/v1")
+      .then(res => console.log(res))
 
   }, [])
 
