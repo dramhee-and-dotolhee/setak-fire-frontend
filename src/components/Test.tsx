@@ -5,19 +5,25 @@ import {useState} from "react";
 
 function Test () {
 
-  const [text, setText] = useRecoilState(textState);
 
-  const [text2, setText2] = useState("");
+  // RecoilState
+  const [text, setText] = useRecoilState(textState);
 
   const onChange = (event: { target: { value: string | ((currVal: string) => string); }; }) => {
     setText(event.target.value);
     console.log('text1 : ', text);
   }
 
+
+  // useState
+  const [text2, setText2] = useState("");
+
   const onChange2 = (event: { target: { value: string | ((currVal: string) => string); }; }) => {
     setText2(event.target.value);
     console.log('text2 : ', text2);
   }
+
+
 
   return (
     <div>
