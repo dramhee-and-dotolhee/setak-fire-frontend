@@ -1,7 +1,9 @@
+import Test from "../Test";
+
 function Home () {
   return (
     <>
-      Home
+      <Test />
     </>
   )
 }
