@@ -1,9 +1,9 @@
-import Test from "../Test";
+import Join from "../user/join/Join";
 
 function Home () {
   return (
     <>
-      <Test />
+      <Join />
     </>
   )
 }

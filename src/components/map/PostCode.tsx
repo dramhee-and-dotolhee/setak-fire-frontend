@@ -125,7 +125,7 @@ const PostCode = () => {
           requiredMarkStyle="asterisk"
           footer={
             <Button block type='submit' color='primary' size='large'>
-              submit
+              다음
             </Button>
           }
         >

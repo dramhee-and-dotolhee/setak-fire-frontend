@@ -1,7 +1,19 @@
+import Account from "./Account";
+import CustomerInfo from "./CustomerInfo";
+import PostCode from "../../map/PostCode";
+import PersonalInfo from "./PersonalInfo";
+
 function Join () {
+
   return (
     <>
-      join
+      <Account />
+      <hr/>
+      <CustomerInfo />
+      <hr/>
+      <PostCode />
+      <hr/>
+      <PersonalInfo />
     </>
   )
 }
