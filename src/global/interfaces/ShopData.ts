@@ -1,3 +1,4 @@
+
 export default interface ShopData {
   id: number,
   name: string,

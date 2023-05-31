@@ -1,108 +1,40 @@
 import {Card, Image, Swiper} from "antd-mobile";
-import ShopData from "../../interfaces/ShopData";
+import ShopData from "../../global/interfaces/ShopData";
 import ShopInfoBox from "./ShopInfoBox";
 import MapView from "../map/MapView";
+import { useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { shopState } from "../../recoil/atoms";
 
 
 function Shop() {
 
-  // API 호출 (임시 데이터)
-  const data: ShopData[] = [
-    {
-      "id": 1,
-      "name": "불세탁람쥐",
-      "imageUrls": [
-        "https://cdn-icons-png.flaticon.com/256/3322/3322056.png",
-        "https://cdn-icons-png.flaticon.com/256/7029/7029382.png"
-      ],
-      "partnerId": 1,
-      "isAvailableDelivery": true,
-      "categoryTypes": [
-        "CLEANING"
-      ],
-      "minimumCharge": 5000,
-      "minimumUnit": 1,
-      "deliveryCharge": 1000,
-      "address": "서울시 성북구 아리랑로 75",
-      "createdAt": "2023-05-12T00:01:37.402+09:00",
-      "updateAt": "2023-05-12T00:01:37.402+09:00",
-      "x": 100.0,
-      "y": 1000.0
-    },
-    {
-      "id": 2,
-      "name": "세탁왕이정준",
-      "imageUrls": [
-        "https://cdn-icons-png.flaticon.com/256/3322/3322056.png",
-        "https://cdn-icons-png.flaticon.com/256/7029/7029382.png"
-      ],
-      "partnerId": 2,
-      "isAvailableDelivery": false,
-      "categoryTypes": [
-        "CLEANING", "REFORM", "MENDING"
-      ],
-      "minimumCharge": 5000,
-      "minimumUnit": 1,
-      "deliveryCharge": 1000,
-      "address": "서울시 헌릉로 8길 45",
-      "createdAt": "2023-05-12T00:16:02.168+09:00",
-      "updateAt": "2023-05-12T00:16:02.168+09:00",
-      "x": 100.0,
-      "y": 1000.0
-    },
-    {
-      "id": 3,
-      "name": "찐세탁람쥐",
-      "imageUrls": [
-        "https://cdn-icons-png.flaticon.com/256/3322/3322056.png",
-        "https://cdn-icons-png.flaticon.com/256/7029/7029382.png"
-      ],
-      "partnerId": 3,
-      "isAvailableDelivery": true,
-      "categoryTypes": [
-        "CLEANING", "PREMIUM"
-      ],
-      "minimumCharge": 5000,
-      "minimumUnit": 1,
-      "deliveryCharge": 1000,
-      "address": "서울시 성북구 아리랑로 75",
-      "createdAt": "2023-05-12T00:16:02.168+09:00",
-      "updateAt": "2023-05-12T00:16:02.168+09:00",
-      "x": 100.0,
-      "y": 1000.0
-    },
-    {
-      "id": 4,
-      "name": "쫄세탁람쥐",
-      "imageUrls": [
-        "https://cdn-icons-png.flaticon.com/256/3322/3322056.png",
-        "https://cdn-icons-png.flaticon.com/256/7029/7029382.png"
-      ],
-      "partnerId": 4,
-      "isAvailableDelivery": true,
-      "categoryTypes": [
-        "CLEANING", "MENDING",
-      ],
-      "minimumCharge": 5000,
-      "minimumUnit": 15,
-      "deliveryCharge": 1000,
-      "address": "서울시 쫄다람쥐로 60",
-      "createdAt": "2023-05-12T00:16:02.168+09:00",
-      "updateAt": "2023-05-12T00:16:02.168+09:00",
-      "x": 100.0,
-      "y": 1000.0
-    }
-  ]
+
+  // shop list 상태 관리
+  const [shopList, setShopList] = useRecoilState<ShopData[]>(shopState);
+
+  // api 주소
+  const apiHost: string | undefined = process.env.REACT_APP_API_HOST_URL;
+
+  useEffect(() => {
+
+    (async () => {
+      const res = await fetch(`${apiHost}/shops`);
+      const shops = await res.json();
+      // console.log(...shops)
+      setShopList(shops)
+    } )()
+
+  }, [])
 
   return (
     <div style={{backgroundColor: 'blue'}}>
       <MapView />
 
-      {/*<MapView2 />*/}
       <div style={{display: 'flex', flexDirection: 'column'}}>
         <h1 style={{flex: 1, margin: '2rem'}}>현 위치</h1>
         {
-          data.map(shop =>
+          shopList && shopList.map(shop =>
             <Card
               key={shop.id}
               title={shop.name}

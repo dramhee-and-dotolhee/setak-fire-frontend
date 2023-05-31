@@ -1,7 +1,7 @@
-import ShopData from "../../interfaces/ShopData";
+import ShopData from "../../global/interfaces/ShopData";
 import {Grid, Space, Tag} from "antd-mobile";
 
-interface CategoryColorType {
+interface CategoryType {
   CLEANING: string;
   REFORM: string;
   MENDING: string;
@@ -13,12 +13,21 @@ interface CategoryColorType {
 export default function ShopInfoBox({shop}: { shop: ShopData }) {
 
   // category type 별 색상 정의
-  const categoryColor: CategoryColorType = {
+  const categoryColor: CategoryType = {
     "CLEANING": "default",
     "REFORM": "primary",
     "MENDING": "warning",
     "PREMIUM": "danger",
   }
+
+  // category
+  const categoryDisplayName:CategoryType = {
+    "CLEANING": "세탁",
+    "REFORM": "리폼",
+    "MENDING": "수선",
+    "PREMIUM": "프리미엄",
+  }
+
 
   // 수거 여부
   const handleDelivery = (isAvailableDelivery: boolean) => {
@@ -39,9 +48,9 @@ export default function ShopInfoBox({shop}: { shop: ShopData }) {
       <p>최소비용 {shop.minimumCharge}</p>
       {handleDelivery(shop.isAvailableDelivery)}
       <div>
-        {shop.categoryTypes.map((type, i) =>
+        {shop.categoryTypes.map((categoryType:string, i) =>
           <Space key={i}>
-            <Tag color={categoryColor[type]} round style={{margin: '0.15rem'}}>{type}</Tag>
+            <Tag color={categoryColor[categoryType]} round style={{margin: '0.15rem'}}>{categoryDisplayName[categoryType]}</Tag>
           </Space>
         )}
       </div>
