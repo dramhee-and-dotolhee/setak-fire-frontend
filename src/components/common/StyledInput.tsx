@@ -8,6 +8,7 @@ export default function StyledInput({ placeholder, required }:InputType) {
     border: 'none',
     borderBottom: '1px solid gray',
     lineHeight: '1.5',
+    outline: 'none',
   }
 
   return (
