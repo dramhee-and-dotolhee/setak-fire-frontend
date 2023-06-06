@@ -1,56 +1,58 @@
-import {Button, Form, Input} from "antd-mobile";
+import { Button } from "antd-mobile";
 import { useForm } from "react-hook-form";
-import StyledInput from "../../common/StyledInput";
+import SFFInput from "../../common/Input";
 
 
 function PersonalInfo () {
 
   // input common 컴포넌트로 만들기
 
-  const { register } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const onSubmit = (data: any) => console.log(data);
 
   return (
-    <Form>
-      <Form.Item name='howToEnter' label='출입방법' rules={[{ required: true }]}>
-        <StyledInput
-          {...register('howToEnter')}
+    <form onSubmit ={handleSubmit(onSubmit)}>
+        <label htmlFor="howToEnter">출입방법</label>
+        <SFFInput
+          {...register('howToEnter', {
+            required: '필수 항목입니다',
+            validate: {}
+          })}
           type="text"
           id="howToEnter"
           placeholder="출입방법을 입력해주세요"
-          value=""
+          borderWidth="1px solid black"
           width="100%"
-          borderWidth="1px"
           required={true}
         />
-      </Form.Item>
-      <Form.Item name='requirementMemo' label='요청사항' rules={[{ required: true }]}>
-        <StyledInput
+      <span>{errors?.howToEnter?.message as string}</span>
+
+        <label htmlFor="howToEnter">요청사항</label>
+        <SFFInput
           {...register('requirementMemo')}
           type="text"
           id="requirementMemo"
           placeholder="요청사항을 입력해주세요"
-          value=""
+          borderWidth="1px solid black"
           width="100%"
-          borderWidth="0.1px"
           required={true}
         />
-      </Form.Item>
-      <Form.Item name='memo' label='메모' rules={[{ required: true }]}>
-        <StyledInput
+
+        <label htmlFor="howToEnter">메모</label>
+        <SFFInput
           {...register('memo')}
           type="text"
           id="memo"
           placeholder="메모를 입력해주세요"
-          value=""
+          borderWidth="1px solid black"
           width="100%"
-          borderWidth= "0"
           required={true}
         />
-      </Form.Item>
+
       <Button block color='primary' size='large' type="submit" onClick={() => console.log(register)}>
         가입하기
       </Button>
-    </Form>
+    </form>
   )
 }
 

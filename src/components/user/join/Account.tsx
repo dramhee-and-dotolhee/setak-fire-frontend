@@ -1,20 +1,33 @@
-import {Button, Form, Input} from "antd-mobile";
+import { Form } from "antd-mobile";
+import SFFInput from "../../common/Input";
 
 function Account () {
   return (
     <Form>
-      <Form.Item name='userName' label='아이디' rules={[{ required: true }]}>
-        <Input placeholder='사용하실 아이디를 입력해주세요' />
-      </Form.Item>
-      <Form.Item name='password' label='비밀번호' rules={[{ required: true }]}>
-        <Input placeholder='비밀번호를 입력해주세요' />
-      </Form.Item>
-      <Form.Item name='passwordConfirm' label='비밀번호 확인' rules={[{ required: true }]}>
-        <Input placeholder='비밀번호를 다시 입력해주세요' />
-      </Form.Item>
-      <Button block color='primary' size='large'>
-        다음
-      </Button>
+      <label htmlFor='userName'>아이디</label>
+      <SFFInput
+        type='text'
+        id='userName'
+        placeholder="아이디를 입력해주세요"
+        borderWidth="1px solid black"
+        width="100%"
+      />
+      <label htmlFor='password'>비밀번호</label>
+      <SFFInput
+        type='text'
+        id='password'
+        placeholder="비밀번호를 입력해주세요"
+        borderWidth="1px solid black"
+        width="100%"
+      />
+      <label htmlFor='passwordConfirm'>비밀번호 확인</label>
+      <SFFInput
+        type='text'
+        id='passwordConfirm'
+        placeholder="비밀번호를 다시 입력해주세요"
+        borderWidth="1px solid black"
+        width="100%"
+      />
     </Form>
   )
 }

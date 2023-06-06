@@ -1,6 +1,7 @@
 import {Divider} from "antd";
 import {Button, Form, Input} from "antd-mobile";
 import React, {useEffect, useRef} from "react";
+import SFFInput from "../common/Input";
 
 declare global {
   interface Window {
@@ -120,6 +121,7 @@ const PostCode = () => {
   return (
     <>
       <div style={{ display: 'flex' }}>
+
         <Form
           style={{ flex: 1 }}
           requiredMarkStyle="asterisk"
@@ -129,41 +131,42 @@ const PostCode = () => {
             </Button>
           }
         >
-          <Form.Header>주소</Form.Header>
-          <Form.Item
-            onClick={onClickAddr}
-            name="postCode"
-            label="우편번호"
-            rules={[{required: true}]}
-          >
-            <Input
-              type="text"
-              readOnly
-              placeholder="우편번호"/>
-          </Form.Item>
-          <Form.Item
-            name="addr"
-            label="주소"
-            help="주소"
-            rules={[{required: true}]}
-          >
-            <Input
-              type="text"
-              readOnly
-              placeholder="주소"
-            />
-          </Form.Item>
-          <Form.Item name="detailAddr" label="상세주소" help="상세주소">
-            <Input
-              type="text"
-              placeholder="상세주소 (동/호수)"/>
-          </Form.Item>
-          <Form.Item name="extraAddr" label="참고항목" help="참고항목">
-            <Input
-              type="text"
-              readOnly
-              placeholder="참고항목"/>
-          </Form.Item>
+          <label htmlFor='postCode'>우편번호</label>
+          <SFFInput
+            type='text'
+            id='postCode'
+            placeholder="우편번호"
+            borderWidth="1px solid black"
+            width="100%"
+          />
+
+          <label htmlFor='address1'>주소</label>
+          <SFFInput
+            type='text'
+            id='address1'
+            placeholder="주소"
+            borderWidth="1px solid black"
+            width="100%"
+          />
+
+          <label htmlFor='address2'>상세주소</label>
+          <SFFInput
+            type='text'
+            id='address2'
+            placeholder="상세주소"
+            borderWidth="1px solid black"
+            width="100%"
+          />
+
+          <label htmlFor='address3'>참고항목</label>
+          <SFFInput
+            type='text'
+            id='address3'
+            placeholder="비밀번호를 입력해주세요"
+            borderWidth="참고항목"
+            width="100%"
+          />
+
         </Form>
         <div style={{ position: 'fixed' }}>
           <div id="wrap"

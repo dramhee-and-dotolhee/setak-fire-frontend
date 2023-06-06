@@ -1,17 +1,32 @@
-import {Button, Form, Input} from "antd-mobile";
+import { Button, Form } from "antd-mobile";
+import SFFInput from "../../common/Input";
 
 function CustomerInfo () {
   return (
     <Form>
-      <Form.Item name='name' label='이름' rules={[{ required: true }]}>
-        <Input placeholder='이름 입력해주세요' />
-      </Form.Item>
-      <Form.Item name='phoneNumber' label='휴대폰 번호' rules={[{ required: true }]}>
-        <Input placeholder='휴대폰번호를 입력해주세요' />
-      </Form.Item>
+
+      <label htmlFor='name'>이름</label>
+      <SFFInput
+        type='text'
+        id='name'
+        placeholder="아이디를 입력해주세요"
+        borderWidth="1px solid black"
+        width="100%"
+      />
+
+      <label htmlFor='phoneNumber'>휴대전화번호</label>
+      <SFFInput
+        type='text'
+        id='phoneNumber'
+        placeholder="아이디를 입력해주세요"
+        borderWidth="1px solid black"
+        width="100%"
+      />
+
       <Button block color='primary' size='large'>
         다음
       </Button>
+
     </Form>
   )
 }
