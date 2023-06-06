@@ -1,17 +1,30 @@
 import { Button } from "antd-mobile";
 import { useForm } from "react-hook-form";
 import StyledInput from "../../common/Input.style";
+import {useRecoilState} from "recoil";
+import NewCustomer from "../../../global/interfaces/NewCustomer";
+import {customerState} from "../../../recoil/atoms";
 
 
 function PersonalInfo () {
 
-  // input common 컴포넌트로 만들기
+  // Recoil 값 가져오기
+  const [customer, setCustomer] = useRecoilState(customerState);
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = (data: any) => console.log(data);
+  // react - hook -form
+  const {register, handleSubmit, formState: { errors } } = useForm();
+
+  const onSubmit = (data: Partial<NewCustomer>) => {
+    setCustomer(prevCustomer => ({
+      ...prevCustomer,
+      ...data
+    }));
+    console.log(data);
+  }
 
   return (
-    <form onSubmit ={handleSubmit(onSubmit)}>
+    <>
+    <form onSubmit={handleSubmit(onSubmit)}>
 
         <label htmlFor="howToEnter">출입방법</label>
         <StyledInput
@@ -55,6 +68,9 @@ function PersonalInfo () {
       </Button>
 
     </form>
+
+      <button onClick={() => console.log(customer)}>확인용</button>
+    </>
   )
 }
 

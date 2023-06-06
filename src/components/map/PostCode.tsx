@@ -1,7 +1,6 @@
-import {Divider} from "antd";
-import {Button, Form, Input} from "antd-mobile";
-import React, {useEffect, useRef} from "react";
-import SFFInput from "../common/Input";
+import { Button, Form } from "antd-mobile";
+import React, { useEffect, useRef } from "react";
+import StyledInput from "../common/Input.style";
 
 declare global {
   interface Window {
@@ -30,10 +29,10 @@ function createIframe(elementWrap: React.MutableRefObject<HTMLDivElement | null>
       apartment: string;
       zonecode: any;
     }) {
-      const extraAddrInput = document.getElementById("extraAddr") as HTMLInputElement;
+      const extraAddrInput = document.getElementById("address3") as HTMLInputElement;
       const postcodeInput = document.getElementById("postCode") as HTMLInputElement;
-      const addressInput = document.getElementById("addr") as HTMLInputElement;
-      const detailAddressInput = document.getElementById("detailAddr") as HTMLInputElement;
+      const addressInput = document.getElementById("address1") as HTMLInputElement;
+      const detailAddressInput = document.getElementById("address2") as HTMLInputElement;
 
       let addr: string = "";
       let extraAddr: string = "";
@@ -132,39 +131,44 @@ const PostCode = () => {
           }
         >
           <label htmlFor='postCode'>우편번호</label>
-          <SFFInput
+          <StyledInput
             type='text'
             id='postCode'
             placeholder="우편번호"
             borderWidth="1px solid black"
             width="100%"
+            onClick={onClickAddr}
+            readOnly
           />
 
           <label htmlFor='address1'>주소</label>
-          <SFFInput
+          <StyledInput
             type='text'
             id='address1'
             placeholder="주소"
             borderWidth="1px solid black"
             width="100%"
+            readOnly
           />
 
           <label htmlFor='address2'>상세주소</label>
-          <SFFInput
+          <StyledInput
             type='text'
             id='address2'
             placeholder="상세주소"
             borderWidth="1px solid black"
             width="100%"
+            readOnly
           />
 
           <label htmlFor='address3'>참고항목</label>
-          <SFFInput
+          <StyledInput
             type='text'
             id='address3'
-            placeholder="비밀번호를 입력해주세요"
+            placeholder="참고항목을 입력해주세요"
             borderWidth="참고항목"
             width="100%"
+            readOnly
           />
 
         </Form>
