@@ -50,7 +50,7 @@ function PersonalInfo () {
           required={true}
         />
 
-      <Button block color='primary' size='large' type="submit" onClick={() => console.log(register)}>
+      <Button block color='primary' size='large' type="submit">
         가입하기
       </Button>
 
