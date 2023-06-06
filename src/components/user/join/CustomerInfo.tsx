@@ -1,12 +1,12 @@
 import { Button, Form } from "antd-mobile";
-import SFFInput from "../../common/Input";
+import StyledInput from "../../common/Input.style";
 
 function CustomerInfo () {
   return (
     <Form>
 
       <label htmlFor='name'>이름</label>
-      <SFFInput
+      <StyledInput
         type='text'
         id='name'
         placeholder="아이디를 입력해주세요"
@@ -15,7 +15,7 @@ function CustomerInfo () {
       />
 
       <label htmlFor='phoneNumber'>휴대전화번호</label>
-      <SFFInput
+      <StyledInput
         type='text'
         id='phoneNumber'
         placeholder="아이디를 입력해주세요"

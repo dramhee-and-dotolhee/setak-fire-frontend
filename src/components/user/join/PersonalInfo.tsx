@@ -1,6 +1,6 @@
 import { Button } from "antd-mobile";
 import { useForm } from "react-hook-form";
-import SFFInput from "../../common/Input";
+import StyledInput from "../../common/Input.style";
 
 
 function PersonalInfo () {
@@ -12,8 +12,9 @@ function PersonalInfo () {
 
   return (
     <form onSubmit ={handleSubmit(onSubmit)}>
+
         <label htmlFor="howToEnter">출입방법</label>
-        <SFFInput
+        <StyledInput
           {...register('howToEnter', {
             required: '필수 항목입니다',
             validate: {}
@@ -28,7 +29,7 @@ function PersonalInfo () {
       <span>{errors?.howToEnter?.message as string}</span>
 
         <label htmlFor="howToEnter">요청사항</label>
-        <SFFInput
+        <StyledInput
           {...register('requirementMemo')}
           type="text"
           id="requirementMemo"
@@ -39,7 +40,7 @@ function PersonalInfo () {
         />
 
         <label htmlFor="howToEnter">메모</label>
-        <SFFInput
+        <StyledInput
           {...register('memo')}
           type="text"
           id="memo"
@@ -52,6 +53,7 @@ function PersonalInfo () {
       <Button block color='primary' size='large' type="submit" onClick={() => console.log(register)}>
         가입하기
       </Button>
+
     </form>
   )
 }
