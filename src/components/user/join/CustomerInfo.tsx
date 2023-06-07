@@ -1,5 +1,5 @@
 import { Button } from "antd-mobile";
-import StyledInput from "../../common/Input.style";
+import StyledInput from "../../common/StyledInput";
 import { useRecoilState } from "recoil";
 import { customerState } from "../../../recoil/atoms";
 import { useForm } from "react-hook-form";

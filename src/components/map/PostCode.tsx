@@ -1,6 +1,10 @@
 import { Button, Form } from "antd-mobile";
 import React, { useEffect, useRef } from "react";
-import StyledInput from "../common/Input.style";
+import StyledInput from "../common/StyledInput";
+import {useRecoilState} from "recoil";
+import {customerState} from "../../recoil/atoms";
+import {useForm} from "react-hook-form";
+import NewCustomer from "../../global/interfaces/NewCustomer";
 
 declare global {
   interface Window {
@@ -117,21 +121,31 @@ const PostCode = () => {
     }
   }
 
+  // Recoil 값 가져오기
+  const [customer, setCustomer] = useRecoilState(customerState);
+
+  // react - hook -form
+  const {register, handleSubmit, formState: { errors } } = useForm();
+
+  const onSubmit = (data: Partial<NewCustomer>) => {
+    setCustomer(prevCustomer => ({
+      ...prevCustomer,
+      ...data
+    }));
+    console.log(data);
+  }
+
   return (
     <>
       <div style={{ display: 'flex' }}>
 
-        <Form
+        <form
+          onSubmit={handleSubmit(onSubmit)}
           style={{ flex: 1 }}
-          requiredMarkStyle="asterisk"
-          footer={
-            <Button block type='submit' color='primary' size='large'>
-              다음
-            </Button>
-          }
         >
           <label htmlFor='postCode'>우편번호</label>
           <StyledInput
+            {...register("postCode")}
             type='text'
             id='postCode'
             placeholder="우편번호"
@@ -143,6 +157,7 @@ const PostCode = () => {
 
           <label htmlFor='address1'>주소</label>
           <StyledInput
+            {...register("address1")}
             type='text'
             id='address1'
             placeholder="주소"
@@ -153,16 +168,17 @@ const PostCode = () => {
 
           <label htmlFor='address2'>상세주소</label>
           <StyledInput
+            {...register("address2")}
             type='text'
             id='address2'
             placeholder="상세주소"
             borderWidth="1px solid black"
             width="100%"
-            readOnly
           />
 
           <label htmlFor='address3'>참고항목</label>
           <StyledInput
+            {...register("address3")}
             type='text'
             id='address3'
             placeholder="참고항목을 입력해주세요"
@@ -170,8 +186,11 @@ const PostCode = () => {
             width="100%"
             readOnly
           />
+          <Button block color='primary' size='large' type="submit">
+            다음
+          </Button>
+        </form>
 
-        </Form>
         <div style={{ position: 'fixed' }}>
           <div id="wrap"
                ref={elementWrap}
@@ -189,6 +208,8 @@ const PostCode = () => {
           </div>
         </div>
       </div>
+
+      <button onClick={() => console.log(customer)}>확인용</button>
     </>
   )
 }
