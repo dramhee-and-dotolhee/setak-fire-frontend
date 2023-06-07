@@ -22,7 +22,7 @@ declare global {
   }
 }
 
-function createIframe(elementWrap: React.MutableRefObject<HTMLDivElement | null>, currentScroll: number) {
+function createIframe(elementWrap: React.MutableRefObject<HTMLDivElement | null>, setValue: any, currentScroll: number) {
   new window.daum.Postcode({
     oncomplete: function (data: {
       userSelectedType: string;
@@ -33,10 +33,10 @@ function createIframe(elementWrap: React.MutableRefObject<HTMLDivElement | null>
       apartment: string;
       zonecode: any;
     }) {
-      const extraAddrInput = document.getElementById("address3") as HTMLInputElement;
-      const postcodeInput = document.getElementById("postCode") as HTMLInputElement;
-      const addressInput = document.getElementById("address1") as HTMLInputElement;
-      const detailAddressInput = document.getElementById("address2") as HTMLInputElement;
+      // const extraAddrInput = document.getElementById("address3") as HTMLInputElement;
+      // const postcodeInput = document.getElementById("postCode") as HTMLInputElement;
+      // const addressInput = document.getElementById("address1") as HTMLInputElement;
+      // const detailAddressInput = document.getElementById("address2") as HTMLInputElement;
 
       let addr: string = "";
       let extraAddr: string = "";
@@ -62,15 +62,14 @@ function createIframe(elementWrap: React.MutableRefObject<HTMLDivElement | null>
         if (extraAddr !== "") {
           extraAddr = " (" + extraAddr + ")";
         }
-        extraAddrInput.value = extraAddr; // 요소가 없을 경우 런타임 에러 발생 가능
-      } else {
-        let extraAddrInput = document.getElementById("extraAddr") as HTMLInputElement;
-        extraAddrInput.value = extraAddr; // 요소가 없을 경우 런타임 에러 발생 가능
+        setValue('address3', extraAddr); // 요소가 없을 경우 런타임 에러 발생 가능
       }
 
-      postcodeInput.value = data.zonecode;
-      addressInput.value = addr;
-      detailAddressInput.focus();
+      setValue('postCode', data.zonecode);
+      setValue('address1', addr);
+      setValue('address2', data.zonecode);
+      let addr2 = document.getElementById('address2') as HTMLInputElement;
+      addr2.focus();
 
       // iframe을 넣은 element를 안보이게 한다.
       // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
@@ -115,7 +114,7 @@ const PostCode = () => {
 
       const existingIframe = elementWrap.current.querySelector('iframe');
       if (!existingIframe) {
-        createIframe(elementWrap, currentScroll);
+        createIframe(elementWrap, setValue, currentScroll);
       }
       elementWrap.current.style.display = "block";
     }
@@ -125,7 +124,7 @@ const PostCode = () => {
   const [customer, setCustomer] = useRecoilState(customerState);
 
   // react - hook -form
-  const {register, handleSubmit, formState: { errors } } = useForm();
+  const {register, handleSubmit, setValue, formState: { errors } } = useForm();
 
   const onSubmit = (data: Partial<NewCustomer>) => {
     setCustomer(prevCustomer => ({
