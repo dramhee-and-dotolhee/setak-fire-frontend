@@ -6,7 +6,7 @@ import NewCustomer from "../../../global/interfaces/NewCustomer";
 import {customerState} from "../../../recoil/atoms";
 
 
-function PersonalInfo () {
+function PersonalMemo () {
 
   // Recoil 값 가져오기
   const [customer, setCustomer] = useRecoilState(customerState);
@@ -74,4 +74,4 @@ function PersonalInfo () {
   )
 }
 
-export default PersonalInfo;
+export default PersonalMemo;
