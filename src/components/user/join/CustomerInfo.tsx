@@ -15,9 +15,14 @@ function CustomerInfo () {
   const {register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = (data: Partial<NewCustomer>) => {
+
+    // 휴대폰번호 공백 및 하이픈 제거
+    const ParsedPhoneNumber = data.phoneNumber?.trim().replace(/-/g, '');
+
     setCustomer(prevCustomer => ({
       ...prevCustomer,
-      ...data
+      ...data,
+      ParsedPhoneNumber,
     }));
     console.log(data);
   }
@@ -30,7 +35,8 @@ function CustomerInfo () {
       <StyledInput
         {...register('name', {
           required: '필수 항목입니다.',
-          validate: {}
+          minLength: { value: 2, message: '이름은 최소 2자 이상이어야 합니다.' },
+          maxLength: { value: 10, message: '이름은 최대 10자까지 허용됩니다.' },
         })}
         type='text'
         id='name'
@@ -38,13 +44,16 @@ function CustomerInfo () {
         borderWidth="1px solid black"
         width="100%"
       />
-      <span>{errors?.howToEnter?.message as string}</span>
+      <span>{errors?.name?.message as string}</span>
 
       <label htmlFor='phoneNumber'>휴대전화번호</label>
       <StyledInput
         {...register('phoneNumber', {
           required: '필수 항목입니다.',
-          validate: {}
+          pattern: {
+            value: /^\d{3}-\d{3,4}-\d{4}$/,
+            message: '올바른 휴대전화번호 형식을 입력해주세요. (XXX-XXXX-XXXX)',
+          },
         })}
         type='text'
         id='phoneNumber'
@@ -52,6 +61,7 @@ function CustomerInfo () {
         borderWidth="1px solid black"
         width="100%"
       />
+      <span>{errors?.phoneNumber?.message as string}</span>
 
       <Button block color='primary' size='large' type="submit">
         다음
