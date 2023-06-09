@@ -1,19 +1,56 @@
-import Account from "./Account";
-import CustomerInfo from "./CustomerInfo";
-import PostCode from "../../map/PostCode";
-import PersonalInfo from "./PersonalInfo";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { customerState } from "../../../recoil/atoms";
+import NewCustomer from "../../../global/interfaces/NewCustomer";
+
+
 
 function Join () {
 
+  // 페이지 이동하기 위한 react-hook
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Recoil 값 가져오기 - form에 저장된 고객 정보
+  const [customer, setCustomer] = useRecoilState<NewCustomer>(customerState);
+
+  // 다음 버튼 클릭 시 행할 함수들
+  // data는 form submit이 넘어오는 formData
+  const outletOnSubmit = (data: Partial<NewCustomer>) => {
+
+    // 확인용
+    console.log(data);
+    console.log(location, '찐');
+
+    // formdata에 phoneNumber가 존재 할 때,
+    if (data.phoneNumber) {
+    // 핸드폰번호 - 빼고 string으로 변경
+      data.phoneNumber = data.phoneNumber?.trim().replace(/-/g, '');
+    }
+
+    // formdata에 의해서 추가, 변경될 데이터 recoil(customerState)에 저장
+    setCustomer(prevCustomer => ({
+      ...prevCustomer,
+      ...data,
+    }));
+    console.log('이게 찐다람쥐임', customer);
+
+    // 다음페이지 이동 위한 경로
+    const nextDaram = parseInt(location.pathname.split('/')[2]) + 1;
+
+    // 마지막일 때는 home으로 나머지는 다음 페이지로
+    if (nextDaram > 3) {
+      navigate('/home');
+    } else {
+      navigate(`/home/${nextDaram}`)
+    }
+  }
+
+
   return (
     <>
-      <Account />
-      <hr/>
-      <CustomerInfo />
-      <hr/>
-      <PostCode />
-      <hr/>
-      <PersonalInfo />
+      {/* outlet - outlet의 children에게 context로 내려줌 */}
+      <Outlet context={outletOnSubmit} />
     </>
   )
 }

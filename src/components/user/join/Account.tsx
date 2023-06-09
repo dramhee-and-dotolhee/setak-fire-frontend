@@ -1,22 +1,24 @@
 import { Button } from "antd-mobile";
 import StyledInput from "../../common/StyledInput";
 import {useForm} from "react-hook-form";
-import {useRecoilState} from "recoil";
-import {customerState} from "../../../recoil/atoms";
+import { useOutletContext } from "react-router-dom";
+
 
 function Account () {
 
-  const [customer, setCustomer] = useRecoilState(customerState);
-
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const onSubmit = (data:any) => {
-    console.log(data);
-  }
+  // const onSubmit = (data:any) => {
+  //   console.log(data);
+  //   console.log(location);
+  //   navigate('../1')
+  //   console.log(typeof outletOnSubmit)
+  // }
 
+  const outletOnSubmit:any = useOutletContext();
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit((data) => outletOnSubmit(data))}>
       <label htmlFor='userName'>아이디</label>
       <StyledInput
         {...register('userName', {

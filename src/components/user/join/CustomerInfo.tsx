@@ -3,9 +3,12 @@ import StyledInput from "../../common/StyledInput";
 import { useRecoilState } from "recoil";
 import { customerState } from "../../../recoil/atoms";
 import { useForm } from "react-hook-form";
-import NewCustomer from "../../../global/interfaces/NewCustomer";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 function CustomerInfo () {
+
+  // useNavigate
+  const navigate = useNavigate();
 
   // Recoil 값 가져오기
   const [customer, setCustomer] = useRecoilState(customerState);
@@ -14,22 +17,26 @@ function CustomerInfo () {
   // react - hook -form
   const {register, handleSubmit, formState: { errors } } = useForm();
 
-  const onSubmit = (data: Partial<NewCustomer>) => {
+  // const onSubmit = (data: Partial<NewCustomer>) => {
+  //
+  //   // 휴대폰번호 공백 및 하이픈 제거
+  //   data.phoneNumber = data.phoneNumber?.trim().replace(/-/g, '');
+  //
+  //   setCustomer(prevCustomer => ({
+  //     ...prevCustomer,
+  //     ...data,
+  //   }));
+  //
+  //   console.log(data);
+  //
+  //   navigate('../2');
+  // }
 
-    // 휴대폰번호 공백 및 하이픈 제거
-    const ParsedPhoneNumber = data.phoneNumber?.trim().replace(/-/g, '');
-
-    setCustomer(prevCustomer => ({
-      ...prevCustomer,
-      ...data,
-      ParsedPhoneNumber,
-    }));
-    console.log(data);
-  }
+  const outletOnSubmit:any = useOutletContext();
 
   return (
     <>
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(outletOnSubmit)}>
 
       <label htmlFor='name'>이름</label>
       <StyledInput
@@ -63,9 +70,13 @@ function CustomerInfo () {
       />
       <span>{errors?.phoneNumber?.message as string}</span>
 
+      <Button block color='primary' size='large' onClick={() => navigate('../0')}>
+        이전
+      </Button>
       <Button block color='primary' size='large' type="submit">
         다음
       </Button>
+
 
     </form>
       <button onClick={() => console.log(customer)}>확인용</button>

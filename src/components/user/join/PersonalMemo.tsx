@@ -1,12 +1,15 @@
 import { Button } from "antd-mobile";
 import { useForm } from "react-hook-form";
 import StyledInput from "../../common/StyledInput";
-import {useRecoilState} from "recoil";
-import NewCustomer from "../../../global/interfaces/NewCustomer";
-import {customerState} from "../../../recoil/atoms";
+import { useRecoilState } from "recoil";
+import { customerState } from "../../../recoil/atoms";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 
 function PersonalMemo () {
+
+  // useNavigate
+  const navigate = useNavigate();
 
   // Recoil 값 가져오기
   const [customer, setCustomer] = useRecoilState(customerState);
@@ -14,17 +17,23 @@ function PersonalMemo () {
   // react - hook -form
   const {register, handleSubmit, formState: { errors } } = useForm();
 
-  const onSubmit = (data: Partial<NewCustomer>) => {
-    setCustomer(prevCustomer => ({
-      ...prevCustomer,
-      ...data
-    }));
-    console.log(data);
-  }
+  // const onSubmit = (data: Partial<NewCustomer>) => {
+  //   setCustomer(prevCustomer => ({
+  //     ...prevCustomer,
+  //     ...data
+  //   }));
+  //   console.log(data);
+  //
+  //   navigate('..')
+  //
+  // }
+
+  const outletOnSubmit:any = useOutletContext();
+
 
   return (
     <>
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(outletOnSubmit)}>
 
         <label htmlFor="howToEnter">출입방법</label>
         <StyledInput
@@ -63,6 +72,9 @@ function PersonalMemo () {
           required={true}
         />
 
+      <Button block color='primary' size='large' onClick={() => navigate('../2')}>
+        이전
+      </Button>
       <Button block color='primary' size='large' type="submit">
         가입하기
       </Button>

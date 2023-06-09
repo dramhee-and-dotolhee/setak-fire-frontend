@@ -1,10 +1,10 @@
-import { Button, Form } from "antd-mobile";
+import { Button } from "antd-mobile";
 import React, { useEffect, useRef } from "react";
 import StyledInput from "../common/StyledInput";
-import {useRecoilState} from "recoil";
-import {customerState} from "../../recoil/atoms";
-import {useForm} from "react-hook-form";
-import NewCustomer from "../../global/interfaces/NewCustomer";
+import { useRecoilState } from "recoil";
+import { customerState } from "../../recoil/atoms";
+import { useForm } from "react-hook-form";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 declare global {
   interface Window {
@@ -86,6 +86,10 @@ function createIframe(elementWrap: React.MutableRefObject<HTMLDivElement | null>
 }
 
 const PostCode = () => {
+
+  // useNavigate
+  const navigate = useNavigate();
+
   const elementWrap= useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -126,20 +130,24 @@ const PostCode = () => {
   // react - hook -form
   const {register, handleSubmit, setValue, formState: { errors } } = useForm();
 
-  const onSubmit = (data: Partial<NewCustomer>) => {
-    setCustomer(prevCustomer => ({
-      ...prevCustomer,
-      ...data
-    }));
-    console.log(data);
-  }
+  // const onSubmit = (data: Partial<NewCustomer>) => {
+  //   setCustomer(prevCustomer => ({
+  //     ...prevCustomer,
+  //     ...data
+  //   }));
+  //   console.log(data);
+  //
+  //   navigate('../3');
+  // }
+
+  const outletOnSubmit:any = useOutletContext();
 
   return (
     <>
       <div style={{ display: 'flex' }}>
 
         <form
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(outletOnSubmit)}
           style={{ flex: 1 }}
         >
           <label htmlFor='postCode'>우편번호</label>
@@ -185,6 +193,10 @@ const PostCode = () => {
             width="100%"
             readOnly
           />
+
+          <Button block color='primary' size='large' onClick={() => navigate('../1')}>
+            이전
+          </Button>
           <Button block color='primary' size='large' type="submit">
             다음
           </Button>
