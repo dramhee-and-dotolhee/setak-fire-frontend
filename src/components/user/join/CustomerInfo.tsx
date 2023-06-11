@@ -14,7 +14,7 @@ function CustomerInfo () {
   const [customer, setCustomer] = useRecoilState(customerState);
 
 
-  // react - hook -form
+  // react - hooks -form
   const {register, handleSubmit, formState: { errors } } = useForm();
 
   // const onSubmit = (data: Partial<NewCustomer>) => {

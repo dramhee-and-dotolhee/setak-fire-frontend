@@ -127,7 +127,7 @@ const PostCode = () => {
   // Recoil 값 가져오기
   const [customer, setCustomer] = useRecoilState(customerState);
 
-  // react - hook -form
+  // react - hooks -form
   const {register, handleSubmit, setValue, formState: { errors } } = useForm();
 
   // const onSubmit = (data: Partial<NewCustomer>) => {

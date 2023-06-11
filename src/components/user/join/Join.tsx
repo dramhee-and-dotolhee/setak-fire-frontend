@@ -2,12 +2,16 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { customerState } from "../../../recoil/atoms";
 import NewCustomer from "../../../global/interfaces/NewCustomer";
+import {useCreateCustomer} from "../../../hooks/useCreateCustomer";
 
 
 
 function Join () {
 
-  // 페이지 이동하기 위한 react-hook
+  // custom hooks 호출
+  const createCustomer = useCreateCustomer();
+
+  // 페이지 이동하기 위한 react-hooks
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -40,6 +44,9 @@ function Join () {
 
     // 마지막일 때는 home으로 나머지는 다음 페이지로
     if (nextDaram > 3) {
+      // data 전송
+      createCustomer.mutate(customer);
+
       navigate('/home');
     } else {
       navigate(`/home/${nextDaram}`)
