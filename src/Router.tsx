@@ -8,11 +8,13 @@ import Account from "./components/user/join/Account";
 import CustomerInfo from "./components/user/join/CustomerInfo";
 import PostCode from "./components/map/PostCode";
 import PersonalMemo from "./components/user/join/PersonalMemo";
+import NotFound from "./components/common/NotFound";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <NotFound />,
     children: [
       {
         path: "home",
