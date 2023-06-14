@@ -1,9 +1,11 @@
-import { Button } from "antd-mobile";
 import StyledInput from "../../common/StyledInput";
 import { useRecoilState } from "recoil";
 import { customerState } from "../../../recoil/atoms";
 import { useForm } from "react-hook-form";
 import { useNavigate, useOutletContext } from "react-router-dom";
+import StyledLabel from "../../common/StyledLabel";
+import {BlockButton, LineButton} from "../../common/StyledButton";
+import React from "react";
 
 function CustomerInfo () {
 
@@ -36,9 +38,15 @@ function CustomerInfo () {
 
   return (
     <>
-    <form onSubmit={handleSubmit(outletOnSubmit)}>
+    <form
+      onSubmit={handleSubmit(outletOnSubmit)}
+      style={{
+        display:'flex',
+        flexDirection: 'column'
+      }}
+    >
 
-      <label htmlFor='name'>이름</label>
+      <StyledLabel htmlFor='name'>이름</StyledLabel>
       <StyledInput
         {...register('name', {
           required: '필수 항목입니다.',
@@ -53,7 +61,7 @@ function CustomerInfo () {
       />
       <span>{errors?.name?.message as string}</span>
 
-      <label htmlFor='phoneNumber'>휴대전화번호</label>
+      <StyledLabel htmlFor='phoneNumber'>휴대전화번호</StyledLabel>
       <StyledInput
         {...register('phoneNumber', {
           required: '필수 항목입니다.',
@@ -70,12 +78,12 @@ function CustomerInfo () {
       />
       <span>{errors?.phoneNumber?.message as string}</span>
 
-      <Button block color='primary' size='large' onClick={() => navigate('../0')}>
-        이전
-      </Button>
-      <Button block color='primary' size='large' type="submit">
+      <BlockButton type="submit">
         다음
-      </Button>
+      </BlockButton>
+      <LineButton onClick={() => navigate('../0')}>
+        이전
+      </LineButton>
 
 
     </form>

@@ -1,10 +1,11 @@
-import { Button } from "antd-mobile";
 import React, { useEffect, useRef } from "react";
 import StyledInput from "../common/StyledInput";
 import { useRecoilState } from "recoil";
 import { customerState } from "../../recoil/atoms";
 import { useForm } from "react-hook-form";
 import { useNavigate, useOutletContext } from "react-router-dom";
+import StyledLabel from "../common/StyledLabel";
+import {BlockButton, LineButton} from "../common/StyledButton";
 
 declare global {
   interface Window {
@@ -53,6 +54,7 @@ function createIframe(elementWrap: React.MutableRefObject<HTMLDivElement | null>
         if (data.bname !== "" && /[동|로|가]$/g.test(data.bname)) {
           // @TODO 행정동을 나중에 DB에 저장해야됨
           extraAddr += data.bname;
+          setValue('district', data.bname)
         }
         // 건물명이 있고, 공동주택일 경우 추가한다.
         if (data.buildingName !== "" && data.apartment === "Y") {
@@ -67,7 +69,6 @@ function createIframe(elementWrap: React.MutableRefObject<HTMLDivElement | null>
 
       setValue('postCode', data.zonecode);
       setValue('address1', addr);
-      setValue('address2', data.zonecode);
       let addr2 = document.getElementById('address2') as HTMLInputElement;
       addr2.focus();
 
@@ -144,13 +145,15 @@ const PostCode = () => {
 
   return (
     <>
-      <div style={{ display: 'flex' }}>
-
+      <div>
         <form
           onSubmit={handleSubmit(outletOnSubmit)}
-          style={{ flex: 1 }}
+          style={{
+            display:'flex',
+            flexDirection: 'column'
+          }}
         >
-          <label htmlFor='postCode'>우편번호</label>
+          <StyledLabel htmlFor='postCode'>우편번호</StyledLabel>
           <StyledInput
             {...register("postCode")}
             type='text'
@@ -162,7 +165,7 @@ const PostCode = () => {
             readOnly
           />
 
-          <label htmlFor='address1'>주소</label>
+          <StyledLabel htmlFor='address1'>주소</StyledLabel>
           <StyledInput
             {...register("address1")}
             type='text'
@@ -173,7 +176,7 @@ const PostCode = () => {
             readOnly
           />
 
-          <label htmlFor='address2'>상세주소</label>
+          <StyledLabel htmlFor='address2'>상세주소</StyledLabel>
           <StyledInput
             {...register("address2")}
             type='text'
@@ -183,7 +186,7 @@ const PostCode = () => {
             width="100%"
           />
 
-          <label htmlFor='address3'>참고항목</label>
+          <StyledLabel htmlFor='address3'>참고항목</StyledLabel>
           <StyledInput
             {...register("address3")}
             type='text'
@@ -193,22 +196,27 @@ const PostCode = () => {
             width="100%"
             readOnly
           />
+          <input
+            {...register('district')}
+            id='district'
+            style={{display:'none'}}
+          />
 
-          <Button block color='primary' size='large' onClick={() => navigate('../1')}>
-            이전
-          </Button>
-          <Button block color='primary' size='large' type="submit">
+          <BlockButton type="submit">
             다음
-          </Button>
+          </BlockButton>
+          <LineButton onClick={() => navigate('../1')}>
+            이전
+          </LineButton>
         </form>
 
-        <div style={{ position: 'fixed' }}>
+        <div style={{ position: 'fixed', top: 0, left:0 }}>
           <div id="wrap"
                ref={elementWrap}
                style={{
                  display: 'none',
                  border: '1px solid',
-                 width: `100vw-1rem`,
+                 width: `100vw`,
                  height: '100vh',
                  backgroundColor: 'white',
                }}>

@@ -1,9 +1,11 @@
-import { Button } from "antd-mobile";
 import { useForm } from "react-hook-form";
 import StyledInput from "../../common/StyledInput";
 import { useRecoilState } from "recoil";
 import { customerState } from "../../../recoil/atoms";
 import { useNavigate, useOutletContext } from "react-router-dom";
+import StyledLabel from "../../common/StyledLabel";
+import {BlockButton, LineButton} from "../../common/StyledButton";
+import React from "react";
 
 
 function PersonalMemo () {
@@ -36,9 +38,15 @@ function PersonalMemo () {
 
   return (
     <>
-    <form onSubmit={handleSubmit(outletOnSubmit)}>
+    <form
+      onSubmit={handleSubmit(outletOnSubmit)}
+      style={{
+        display:'flex',
+        flexDirection: 'column'
+      }}
+    >
 
-        <label htmlFor="howToEnter">출입방법</label>
+        <StyledLabel htmlFor="howToEnter">출입방법</StyledLabel>
         <StyledInput
           {...register('howToEnter', {
             required: '필수 항목입니다',
@@ -53,7 +61,7 @@ function PersonalMemo () {
         />
       <span>{errors?.howToEnter?.message as string}</span>
 
-        <label htmlFor="howToEnter">요청사항</label>
+        <StyledLabel htmlFor="howToEnter">요청사항</StyledLabel>
         <StyledInput
           {...register('requirementMemo')}
           type="text"
@@ -64,7 +72,7 @@ function PersonalMemo () {
           required={true}
         />
 
-        <label htmlFor="howToEnter">메모</label>
+        <StyledLabel htmlFor="howToEnter">메모</StyledLabel>
         <StyledInput
           {...register('memo')}
           type="text"
@@ -75,12 +83,12 @@ function PersonalMemo () {
           required={true}
         />
 
-      <Button block color='primary' size='large' onClick={() => navigate('../2')}>
-        이전
-      </Button>
-      <Button block color='primary' size='large' type="submit">
+      <BlockButton type="submit">
         가입하기
-      </Button>
+      </BlockButton>
+      <LineButton onClick={() => navigate('../2')}>
+        이전
+      </LineButton>
 
     </form>
 

@@ -1,12 +1,11 @@
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { customerState } from "../../../recoil/atoms";
+import {Outlet, useLocation, useNavigate} from "react-router-dom";
+import {useRecoilState} from "recoil";
+import {customerState} from "../../../recoil/atoms";
 import NewCustomer from "../../../global/interfaces/NewCustomer";
 import {useCreateCustomer} from "../../../hooks/useCreateCustomer";
 
 
-
-function Join () {
+function Join() {
 
   // custom hooks 호출
   const createCustomer = useCreateCustomer();
@@ -28,7 +27,7 @@ function Join () {
 
     // formdata에 phoneNumber가 존재 할 때,
     if (data.phoneNumber) {
-    // 핸드폰번호 - 빼고 string으로 변경
+      // 핸드폰번호 - 빼고 string으로 변경
       data.phoneNumber = data.phoneNumber?.trim().replace(/-/g, '');
     }
 
@@ -56,8 +55,17 @@ function Join () {
 
   return (
     <>
-      {/* outlet - outlet의 children에게 context로 내려줌 */}
-      <Outlet context={outletOnSubmit} />
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh',
+        fontSize: '1.5rem',
+        padding: '1rem'
+      }}>
+        {/* outlet - outlet의 children에게 context로 내려줌 */}
+        <Outlet context={outletOnSubmit}/>
+      </div>
     </>
   )
 }

@@ -3,22 +3,24 @@ import styled from "styled-components";
 
 const StyledInput = styled.input<{ borderWidth: string | undefined }>`
   border: none;
-  border-bottom: ${props => props.borderWidth || '1px'};
-  width: ${props => props.width || '100%'};
-  font-size: 14px;
-  line-height: 1.4;
-  
+  max-width: ${props => props.width || '90%'};
+  font-size: 1.5rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-block: 0.5rem 1rem;
+  background: rgba(229, 228, 228, 0.35);
+
   &:focus {
-  outline: none;
-  border-color: blue;
+    outline: none;
+    border-color: blue;
   }
-  
+
   &::placeholder {
-  font-size: 14px;
-  line-height: 1;
-  color: gray;
+    font-size: 14px;
+    line-height: 1;
+    color: gray;
   }
-  
+
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
