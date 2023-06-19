@@ -5,6 +5,10 @@ import MapView from "../map/MapView";
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { shopState } from "../../recoil/atoms";
+import {useQuery} from "@tanstack/react-query";
+import axios from "axios";
+import http from "../../api/http";
+import ShopService from "./index";
 
 
 function Shop() {
@@ -16,25 +20,30 @@ function Shop() {
   // api 주소
   const apiHost: string | undefined = process.env.REACT_APP_API_HOST_URL;
 
-  useEffect(() => {
+  const getShopList = () => {
+    return http
+      .get('/shops')
+      .then((res) => {
+        console.log(res.data)
+        setShopList(res.data)
+      })
+  }
 
-    (async () => {
-      const res = await fetch(`${apiHost}/shops`);
-      const shops = await res.json();
-      // console.log(...shops)
-      setShopList(shops)
-    } )()
-
-  }, [])
+  const { isLoading, error, data } = useQuery(
+    ['shopList'],
+    ShopService.list
+    // getShopList
+);
 
   return (
     <div style={{backgroundColor: 'blue'}}>
       <MapView />
 
+      {isLoading ? <p>loading...</p> : null }
       <div style={{display: 'flex', flexDirection: 'column'}}>
         <h1 style={{flex: 1, margin: '2rem'}}>현 위치</h1>
         {
-          shopList && shopList.map(shop =>
+          shopList.length && shopList.map(shop =>
             <Card
               key={shop.id}
               title={shop.name}
