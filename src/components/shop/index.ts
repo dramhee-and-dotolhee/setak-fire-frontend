@@ -8,6 +8,7 @@ const ShopService = {
       .get('/shops')
       .then((res) => {
         console.log(res.data)
+        return res.data;
       })
   }
 }
