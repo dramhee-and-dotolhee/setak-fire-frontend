@@ -2,6 +2,7 @@
 import {useMutation} from "@tanstack/react-query";
 import NewCustomer from "../global/interfaces/NewCustomer";
 import axios from "axios";
+import CustomerService from "../components/customer";
 
 const apiHost: string | undefined = process.env.REACT_APP_API_HOST_URL;
 
@@ -12,7 +13,7 @@ export function useCreateCustomer() {
   // const queryClient = useQueryClient();
 
   return useMutation(
-    (newCustomer: NewCustomer) => axios.post(`${apiHost}/customers`, newCustomer),
+    (newCustomer: NewCustomer) => CustomerService.create(newCustomer),
     {
       onMutate: (customer) => {
         console.log('onMutate : ', customer);

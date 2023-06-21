@@ -2,12 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Home from "./components/home/Home";
 import OrderHistory from "./components/orderHistory/OrderHistory";
-import MyPage from "./components/user/myPage/MyPage";
+import MyPage from "./components/customer/myPage/MyPage";
 import Shop from "./components/shop/Shop";
-import Account from "./components/user/join/Account";
-import CustomerInfo from "./components/user/join/CustomerInfo";
+import Account from "./components/customer/join/Account";
+import CustomerInfo from "./components/customer/join/CustomerInfo";
 import PostCode from "./components/map/PostCode";
-import PersonalMemo from "./components/user/join/PersonalMemo";
+import PersonalMemo from "./components/customer/join/PersonalMemo";
 import NotFound from "./components/common/NotFound";
 
 const router = createBrowserRouter([
