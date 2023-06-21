@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import { useEffect } from "react";
 
 
 declare global {
@@ -41,8 +41,8 @@ function MapView() {
 
 
   return (
-    <div style={{ display: 'flex', height: '30vh' }}>
-      <div id="map" style={{ flex: 1, margin: '2rem' }}/>
+    <div style={{display: 'flex', height: '30vh'}}>
+      <div id="map" style={{flex: 1, margin: '2rem'}}/>
     </div>
   )
 }

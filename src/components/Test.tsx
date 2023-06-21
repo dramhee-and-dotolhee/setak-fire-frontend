@@ -1,9 +1,9 @@
-import {useRecoilState, useRecoilValue} from "recoil";
-import {textState} from "../recoil/atoms";
-import {charCountState} from "../recoil/selectors";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { textState } from "../recoil/atoms";
+import { charCountState } from "../recoil/selectors";
 
 
-function Test () {
+function Test() {
 
 
   // RecoilState
@@ -28,17 +28,15 @@ function Test () {
   // }
 
 
-
   return (
     <div>
 
       {/* recoil - useRecoilState */}
-      <input type="text" value={text} onChange={onChange} />
-      <br />
+      <input type="text" value={text} onChange={onChange}/>
+      <br/>
       Echo: {text}
       <hr/>
       <div>Character Count : {count}</div>
-
 
 
       {/*/!* useState *!/*/}
