@@ -1,20 +1,14 @@
 import { useForm } from "react-hook-form";
 import StyledInput from "../../common/StyledInput";
-import { useRecoilState } from "recoil";
-import { customerState } from "../../../recoil/atoms";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import StyledLabel from "../../common/StyledLabel";
-import {BlockButton, LineButton} from "../../common/StyledButton";
-import React from "react";
+import { BlockButton, LineButton } from "../../common/StyledButton";
 
 
 function PersonalMemo () {
 
   // useNavigate
   const navigate = useNavigate();
-
-  // Recoil 값 가져오기
-  const [customer, setCustomer] = useRecoilState(customerState);
 
   // react - hooks -form
   const {register, handleSubmit, formState: { errors } } = useForm();
@@ -32,19 +26,15 @@ function PersonalMemo () {
 
   const outletOnSubmit:any = useOutletContext();
 
-
-
-
-
   return (
     <>
-    <form
-      onSubmit={handleSubmit(outletOnSubmit)}
-      style={{
-        display:'flex',
-        flexDirection: 'column'
-      }}
-    >
+      <form
+        onSubmit={handleSubmit(outletOnSubmit)}
+        style={{
+          display:'flex',
+          flexDirection: 'column'
+        }}
+      >
 
         <StyledLabel htmlFor="howToEnter">출입방법</StyledLabel>
         <StyledInput
@@ -90,9 +80,7 @@ function PersonalMemo () {
         이전
       </LineButton>
 
-    </form>
-
-      <button onClick={() => console.log(customer)}>확인용</button>
+      </form>
     </>
   )
 }

@@ -1,40 +1,33 @@
-import {Card, Image, Swiper} from "antd-mobile";
+import { Card, Image, Swiper } from "antd-mobile";
 import ShopData from "../../global/interfaces/ShopData";
 import ShopInfoBox from "./ShopInfoBox";
 import MapView from "../map/MapView";
-import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { shopState } from "../../recoil/atoms";
-import {useQuery} from "@tanstack/react-query";
-import axios from "axios";
-import http from "../../api/http";
+import { useQuery } from "@tanstack/react-query";
 import ShopService from "./index";
 
 
 function Shop() {
 
-
   // shop list 상태 관리
   const [shopList, setShopList] = useRecoilState<ShopData[]>(shopState);
 
-  // api 주소
-  const apiHost: string | undefined = process.env.REACT_APP_API_HOST_URL;
-
   // useQuery - api통신
-  const { isLoading } = useQuery(
+  const {isLoading} = useQuery(
     ['shopList'],
     async () => {
       const res = await ShopService.list();
       setShopList(res);
       return res;
     }
-);
+  );
 
   return (
     <div style={{backgroundColor: 'blue'}}>
-      <MapView />
+      <MapView/>
 
-      {isLoading ? <p>loading...</p> : null }
+      {isLoading ? <p>loading...</p> : null}
       <div style={{display: 'flex', flexDirection: 'column'}}>
         <h1 style={{flex: 1, margin: '2rem'}}>현 위치</h1>
         {
@@ -62,7 +55,7 @@ function Shop() {
                   )}
                 </Swiper>
               </div>
-              <ShopInfoBox shop={shop} />
+              <ShopInfoBox shop={shop}/>
             </Card>
           )
         }

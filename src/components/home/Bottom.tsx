@@ -1,6 +1,6 @@
-import {AppOutline, MessageOutline, UnorderedListOutline, UserOutline} from 'antd-mobile-icons'
-import {useLocation, useNavigate} from "react-router-dom";
-import {TabBar} from "antd-mobile";
+import { AppOutline, MessageOutline, UnorderedListOutline, UserOutline } from 'antd-mobile-icons'
+import { useLocation, useNavigate } from "react-router-dom";
+import { TabBar } from "antd-mobile";
 
 function Bottom() {
   const navigate = useNavigate();

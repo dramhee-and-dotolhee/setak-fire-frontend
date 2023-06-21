@@ -1,4 +1,4 @@
-function Order () {
+function Order() {
   return (
     <>
       order

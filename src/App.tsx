@@ -5,9 +5,9 @@ import 'pretendard/dist/web/static/pretendard.css'
 
 function App() {
   return (
-    <div style={{ paddingBottom: '3rem', backgroundColor: 'white', fontFamily: 'Pretendard' }}>
-      <Outlet />
-      <Bottom />
+    <div style={{paddingBottom: '3rem', backgroundColor: 'white', fontFamily: 'Pretendard'}}>
+      <Outlet/>
+      <Bottom/>
     </div>
   );
 }

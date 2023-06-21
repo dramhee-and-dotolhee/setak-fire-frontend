@@ -1,8 +1,8 @@
-import {Outlet, useLocation, useNavigate} from "react-router-dom";
-import {useRecoilState} from "recoil";
-import {customerState} from "../../../recoil/atoms";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { customerState } from "../../../recoil/atoms";
 import NewCustomer from "../../../global/interfaces/NewCustomer";
-import {useCreateCustomer} from "../../../hooks/useCreateCustomer";
+import { useCreateCustomer } from "../../../hooks/useCreateCustomer";
 
 
 function Join() {
@@ -23,7 +23,6 @@ function Join() {
 
     // 확인용
     console.log(data);
-    console.log(location, '찐');
 
     // formdata에 phoneNumber가 존재 할 때,
     if (data.phoneNumber) {
@@ -36,7 +35,6 @@ function Join() {
       ...prevCustomer,
       ...data,
     }));
-    console.log('이게 찐다람쥐임', customer);
 
     // 다음페이지 이동 위한 경로
     const nextDaram = parseInt(location.pathname.split('/')[2]) + 1;
@@ -45,13 +43,11 @@ function Join() {
     if (nextDaram > 3) {
       // data 전송
       createCustomer.mutate(customer);
-
       navigate('/home');
     } else {
       navigate(`/home/${nextDaram}`)
     }
   }
-
 
   return (
     <>

@@ -5,7 +5,7 @@ import { customerState } from "../../recoil/atoms";
 import { useForm } from "react-hook-form";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import StyledLabel from "../common/StyledLabel";
-import {BlockButton, LineButton} from "../common/StyledButton";
+import { BlockButton, LineButton } from "../common/StyledButton";
 
 declare global {
   interface Window {
@@ -91,7 +91,7 @@ const PostCode = () => {
   // useNavigate
   const navigate = useNavigate();
 
-  const elementWrap= useRef<HTMLDivElement | null>(null);
+  const elementWrap = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const postCodeScript: HTMLScriptElement = document.createElement("script");
@@ -129,7 +129,7 @@ const PostCode = () => {
   const [customer, setCustomer] = useRecoilState(customerState);
 
   // react - hooks -form
-  const {register, handleSubmit, setValue, formState: { errors } } = useForm();
+  const {register, handleSubmit, setValue, formState: {errors}} = useForm();
 
   // const onSubmit = (data: Partial<NewCustomer>) => {
   //   setCustomer(prevCustomer => ({
@@ -141,7 +141,7 @@ const PostCode = () => {
   //   navigate('../3');
   // }
 
-  const outletOnSubmit:any = useOutletContext();
+  const outletOnSubmit: any = useOutletContext();
 
   return (
     <>
@@ -149,7 +149,7 @@ const PostCode = () => {
         <form
           onSubmit={handleSubmit(outletOnSubmit)}
           style={{
-            display:'flex',
+            display: 'flex',
             flexDirection: 'column'
           }}
         >
@@ -199,7 +199,7 @@ const PostCode = () => {
           <input
             {...register('district')}
             id='district'
-            style={{display:'none'}}
+            style={{display: 'none'}}
           />
 
           <BlockButton type="submit">
@@ -210,7 +210,7 @@ const PostCode = () => {
           </LineButton>
         </form>
 
-        <div style={{ position: 'fixed', top: 0, left:0 }}>
+        <div style={{position: 'fixed', top: 0, left: 0}}>
           <div id="wrap"
                ref={elementWrap}
                style={{
@@ -222,8 +222,8 @@ const PostCode = () => {
                }}>
             <img
               src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap"
-              style={{ cursor: 'pointer', position: 'relative', left: '0px', top: -1, zIndex: 1 }}
-              onClick={(e) => closePostCode(e)} alt="접기 버튼" />
+              style={{cursor: 'pointer', position: 'relative', left: '0px', top: -1, zIndex: 1}}
+              onClick={(e) => closePostCode(e)} alt="접기 버튼"/>
           </div>
         </div>
       </div>

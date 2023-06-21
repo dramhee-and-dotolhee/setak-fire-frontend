@@ -1,9 +1,8 @@
 import StyledInput from "../../common/StyledInput";
-import {useForm} from "react-hook-form";
-import {useOutletContext} from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useOutletContext } from "react-router-dom";
 import StyledLabel from "../../common/StyledLabel";
-import {BlockButton} from "../../common/StyledButton";
-import React from "react";
+import { BlockButton } from "../../common/StyledButton";
 
 
 function Account() {
@@ -68,7 +67,6 @@ function Account() {
       <BlockButton type="submit">
         다음
       </BlockButton>
-
     </form>
   )
 }

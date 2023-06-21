@@ -1,4 +1,4 @@
-function Cart () {
+function Cart() {
   return (
     <>
       Cart

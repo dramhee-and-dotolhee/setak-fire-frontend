@@ -1,5 +1,5 @@
 import PostCode from "../../map/PostCode";
-import {Button} from "antd-mobile";
+import { Button } from "antd-mobile";
 
 
 function AddressInfo () {

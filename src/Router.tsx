@@ -13,42 +13,42 @@ import NotFound from "./components/common/NotFound";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
-    errorElement: <NotFound />,
+    element: <App/>,
+    errorElement: <NotFound/>,
     children: [
       {
         path: "home",
-        element: <Home />,
+        element: <Home/>,
         children: [
           {
-            path:'0',
-            element: <Account />
+            path: '0',
+            element: <Account/>
           },
           {
-            path:'1',
-            element: <CustomerInfo />
+            path: '1',
+            element: <CustomerInfo/>
           },
           {
-            path:'2',
-            element: <PostCode />
+            path: '2',
+            element: <PostCode/>
           },
           {
-            path:'3',
-            element: <PersonalMemo />
+            path: '3',
+            element: <PersonalMemo/>
           },
         ]
       },
       {
         path: "shop",
-        element: <Shop />,
+        element: <Shop/>,
       },
       {
         path: "order-history",
-        element: <OrderHistory />,
+        element: <OrderHistory/>,
       },
       {
         path: "my-page",
-        element: <MyPage />,
+        element: <MyPage/>,
       },
     ]
   }

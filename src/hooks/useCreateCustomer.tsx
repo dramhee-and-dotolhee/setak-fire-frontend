@@ -1,11 +1,7 @@
 // api 주소
-import {useMutation} from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import NewCustomer from "../global/interfaces/NewCustomer";
-import axios from "axios";
 import CustomerService from "../components/customer";
-
-const apiHost: string | undefined = process.env.REACT_APP_API_HOST_URL;
-
 
 // 새로운 customer 생성
 export function useCreateCustomer() {

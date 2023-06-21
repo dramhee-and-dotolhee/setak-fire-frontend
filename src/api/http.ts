@@ -1,4 +1,4 @@
-import axios, {AxiosInstance} from "axios";
+import axios, { AxiosInstance } from "axios";
 
 const http: AxiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_HOST_URL,

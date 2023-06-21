@@ -1,5 +1,5 @@
 import ShopData from "../../global/interfaces/ShopData";
-import {Grid, Space, Tag} from "antd-mobile";
+import { Grid, Space, Tag } from "antd-mobile";
 
 interface CategoryType {
   CLEANING: string;
@@ -21,7 +21,7 @@ export default function ShopInfoBox({shop}: { shop: ShopData }) {
   }
 
   // category
-  const categoryDisplayName:CategoryType = {
+  const categoryDisplayName: CategoryType = {
     "CLEANING": "세탁",
     "REFORM": "리폼",
     "MENDING": "수선",
@@ -48,9 +48,10 @@ export default function ShopInfoBox({shop}: { shop: ShopData }) {
       <p>최소비용 {shop.minimumCharge}</p>
       {handleDelivery(shop.isAvailableDelivery)}
       <div>
-        {shop.categoryTypes.map((categoryType:string, i) =>
+        {shop.categoryTypes.map((categoryType: string, i) =>
           <Space key={i}>
-            <Tag color={categoryColor[categoryType]} round style={{margin: '0.15rem'}}>{categoryDisplayName[categoryType]}</Tag>
+            <Tag color={categoryColor[categoryType]} round
+                 style={{margin: '0.15rem'}}>{categoryDisplayName[categoryType]}</Tag>
           </Space>
         )}
       </div>

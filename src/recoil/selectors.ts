@@ -1,5 +1,5 @@
 import { selector } from "recoil";
-import {shopState, textState} from "./atoms";
+import { textState } from "./atoms";
 
 // test용
 export const charCountState = selector({

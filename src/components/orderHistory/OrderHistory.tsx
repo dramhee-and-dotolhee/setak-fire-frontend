@@ -1,4 +1,4 @@
-function OrderHistory () {
+function OrderHistory() {
   return (
     <>
       orderHistory
