@@ -20,20 +20,13 @@ function Shop() {
   // api 주소
   const apiHost: string | undefined = process.env.REACT_APP_API_HOST_URL;
 
-  // const getShopList = () => {
-  //   return http
-  //     .get('/shops')
-  //     .then((res) => {
-  //       console.log(res.data)
-  //       setShopList(res.data)
-  //     })
-  // }
-
-  const { isLoading, error, data } = useQuery(
+  // useQuery - api통신
+  const { isLoading } = useQuery(
     ['shopList'],
     async () => {
       const res = await ShopService.list();
       setShopList(res);
+      return res;
     }
 );
 
