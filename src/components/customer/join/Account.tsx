@@ -7,7 +7,14 @@ import { BlockButton } from "../../common/StyledButton";
 
 function Account() {
 
-  const {register, handleSubmit, formState: {errors}} = useForm();
+  const {register, handleSubmit, formState: {errors}} = useForm({
+    defaultValues: {
+      userName: null,
+      password: null,
+      passwordConfirm: null,
+      role: 'CUSTOMER',
+    }
+  });
 
   // const onSubmit = (data:any) => {
   //   console.log(data);
