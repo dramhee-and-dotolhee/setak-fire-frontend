@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import Bottom from "./components/home/Bottom";
 import 'pretendard/dist/web/static/pretendard.css'
-import Home from "./components/home/Home";
 import Splash from "./components/common/Splash";
 
 function App() {
@@ -19,8 +18,8 @@ function App() {
   }, [])
 
   return (
-    <div style={{paddingBottom: '3rem', backgroundColor: 'white', fontFamily: 'Pretendard'}}>
-      {loading ? <Splash /> : <Outlet />}
+    <div style={{paddingBottom: '3rem', backgroundColor: 'white'}}>
+      {loading ? <Splash/> : <Outlet/>}
       <Bottom/>
     </div>
   );
