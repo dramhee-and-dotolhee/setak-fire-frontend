@@ -14,7 +14,7 @@ const SplashWrap = styled.div`
     }
 
     to {
-      opacity: 1;
+      opacity: 90;
     }
   }
   -webkit-animation: fadeIn 3s 1s infinite linear;
