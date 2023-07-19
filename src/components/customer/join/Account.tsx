@@ -26,20 +26,22 @@ function Account() {
 
   const outletOnSubmit: any = useOutletContext();
 
-  const registerAndNext = (data:any) => {
-    http
-      .post('/register', data)
-      .then((res) => {
-        console.log(res);
-        return res;
-      })
-      .then(() => outletOnSubmit(data))
-  }
+
+
+  // const registerAndNext = (data:any) => {
+  //   http
+  //     .post('/register', data)
+  //     .then((res) => {
+  //       console.log(res);
+  //       return res;
+  //     })
+  //     .then(() => outletOnSubmit(data))
+  // }
 
 
   return (
     <form
-      onSubmit={handleSubmit(registerAndNext)}
+      onSubmit={handleSubmit((data) => outletOnSubmit({ userInfo: data }))}
       style={{
         display:'flex',
         flexDirection: 'column'

@@ -1,4 +1,7 @@
+import UserInfo from "./UserInfo";
+
 export default interface NewCustomer {
+  useInfo: UserInfo,
   name: string,
   phoneNumber: string,
   address1: string,

@@ -35,7 +35,7 @@ function Join() {
 
 
     // @TODO formdata에 주소가 존재할 때, 좌표 변환
-    if(data.address1) {
+    if (data.address1) {
       http
         .get('https://dapi.kakao.com/v2/local/search/address.json', {
           params: {query: data.address1},
@@ -44,24 +44,21 @@ function Join() {
           }
         })
         .then((res) => {
-          console.log('확인---', res.data.documents[0].x, res.data.documents[0].y,typeof(res.data.documents[0].x))
           data.latitude = res.data.documents[0].x;
           data.longitude = res.data.documents[0].y;
-          console.log('다음----',data)
           setCustomer(prevCustomer => ({
             ...prevCustomer,
             ...data,
           }));
-          console.log('다음2----',customer)
         })
     }
+
 
     // formdata에 의해서 추가, 변경될 데이터 recoil(customerState)에 저장
     setCustomer(prevCustomer => ({
       ...prevCustomer,
       ...data,
     }));
-    console.log('마지막',customer)
 
     // 다음페이지 이동 위한 경로
     const nextDaram = parseInt(location.pathname.split('/')[2]) + 1;
