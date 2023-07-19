@@ -15,7 +15,7 @@ export function useCreateCustomer() {
         console.log('onMutate : ', customer);
       },
 
-      onSuccess: (data, customer, context) => {
+      onSuccess: (data:any, customer, context) => {
         console.log('onSuccess : ', data.data, customer, context);
       },
 
