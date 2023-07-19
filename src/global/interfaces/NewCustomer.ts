@@ -8,7 +8,7 @@ export default interface NewCustomer {
   howToEnter: string | undefined,
   requirementMemo: string | undefined,
   district: string | undefined,
-  latitude: number | undefined,
-  longitude: number | undefined,
+  latitude: string | undefined,
+  longitude: string | undefined,
   memo: string | undefined,
 }
