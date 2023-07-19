@@ -16,7 +16,7 @@ export function useCreateCustomer() {
       },
 
       onSuccess: (data:any, customer, context) => {
-        console.log('onSuccess : ', data.data, customer, context);
+        console.log('onSuccess : ', data, customer, context);
       },
 
       onError: (error, customer, context) => {

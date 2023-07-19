@@ -3,6 +3,7 @@ import { useRecoilState } from "recoil";
 import { customerState } from "../../../recoil/atoms";
 import NewCustomer from "../../../global/interfaces/NewCustomer";
 import { useCreateCustomer } from "../../../hooks/useCreateCustomer";
+import http from "../../../api/http";
 
 
 function Join() {
@@ -19,7 +20,9 @@ function Join() {
 
   // 다음 버튼 클릭 시 행할 함수들
   // data는 form submit이 넘어오는 formData
-  const outletOnSubmit = (data: Partial<NewCustomer>) => {
+
+  // outlet 4개 중첩된 form에 공통적으로 사용할 onSubmit을 하나로 정의해서 context로 공유
+  const outletOnSubmit = (data: Partial<NewCustomer>) => {   
 
     // 확인용
     console.log(data);
@@ -30,11 +33,35 @@ function Join() {
       data.phoneNumber = data.phoneNumber?.trim().replace(/-/g, '');
     }
 
+
+    // @TODO formdata에 주소가 존재할 때, 좌표 변환
+    if(data.address1) {
+      http
+        .get('https://dapi.kakao.com/v2/local/search/address.json', {
+          params: {query: data.address1},
+          headers: {...http.defaults.headers.common,
+            Authorization: `KakaoAK ${process.env.REACT_APP_KAKAO_REST_KEY}`
+          }
+        })
+        .then((res) => {
+          console.log('확인---', res.data.documents[0].x, res.data.documents[0].y,typeof(res.data.documents[0].x))
+          data.latitude = res.data.documents[0].x;
+          data.longitude = res.data.documents[0].y;
+          console.log('다음----',data)
+          setCustomer(prevCustomer => ({
+            ...prevCustomer,
+            ...data,
+          }));
+          console.log('다음2----',customer)
+        })
+    }
+
     // formdata에 의해서 추가, 변경될 데이터 recoil(customerState)에 저장
     setCustomer(prevCustomer => ({
       ...prevCustomer,
       ...data,
     }));
+    console.log('마지막',customer)
 
     // 다음페이지 이동 위한 경로
     const nextDaram = parseInt(location.pathname.split('/')[2]) + 1;

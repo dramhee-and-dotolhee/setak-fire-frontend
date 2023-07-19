@@ -25,11 +25,11 @@ const H1 = styled.h1`
 `
 
 const Img = styled.img`
-  width: 100%;
+  width: 100vw;
 `
 
 const Strong = styled.strong`
-  font-size: 42px;
+  font-size: 70px;
   color: red;
 `
 
@@ -38,8 +38,8 @@ export default function Splash() {
     <SplashWrap className='fadeIn'>
       <H1>
         <Img src={SplashLogo} alt='logo'/>
+        <Strong>Setak-Fire</Strong>
       </H1>
-      <Strong>Setak-Fire</Strong>
     </SplashWrap>
   )
 }
