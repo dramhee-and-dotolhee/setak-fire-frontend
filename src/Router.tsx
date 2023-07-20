@@ -9,6 +9,7 @@ import CustomerInfo from "./components/customer/join/CustomerInfo";
 import PostCode from "./components/map/PostCode";
 import PersonalMemo from "./components/customer/join/PersonalMemo";
 import NotFound from "./components/common/NotFound";
+import Login from "./components/customer/login/Login";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "my-page",
         element: <MyPage/>,
+      },
+      {
+        path: "login",
+        element: <Login/>,
       },
     ]
   }
