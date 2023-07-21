@@ -18,6 +18,7 @@ function Login () {
 
     // body에 입력값을 넣어주어야 한다
 
+
     http
       .post('/register', body)
       .then((res) => {
