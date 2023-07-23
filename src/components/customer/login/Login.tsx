@@ -5,22 +5,22 @@ import { useForm } from "react-hook-form";
 import http from "../../../api/http";
 
 interface FormValue {
-  id: string;
+  username: string;
   password: string;
 }
 
 function Login () {
 
-  const { register, handleSubmit, formState: {errors} } = useForm<FormValue>();
+  const { handleSubmit, register } = useForm<FormValue>();
 
-  const login =(body:FormValue) => {
+  const login =(data: any) => {
     console.log('로그인!')
 
     // body에 입력값을 넣어주어야 한다
-
+    console.log(data);
 
     http
-      .post('/register', body)
+      .post('/register', data)
       .then((res) => {
         console.log(res.data);
       })
@@ -34,14 +34,20 @@ function Login () {
     >
       <StyledLabel htmlFor='username'>아이디</StyledLabel>
       <StyledInput
+        {...register('username', {
+          required: '필수 항목입니다.',
+        })}
         type='text'
-        id='id'
+        id='username'
         placeholder="아이디를 입력해주세요"
         borderWidth="1px solid black"
         width="100%"
       />
       <StyledLabel htmlFor='password'>비밀번호</StyledLabel>
       <StyledInput
+        {...register('password', {
+          required: '필수 항목입니다.',
+        })}
         type='password'
         id='password'
         placeholder="비밀번호를 입력해주세요"
