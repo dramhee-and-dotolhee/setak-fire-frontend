@@ -20,7 +20,7 @@ function Login () {
     console.log(data);
 
     http
-      .post('/register', data)
+      .post('/login', data)
       .then((res) => {
         console.log(res.data);
       })
