@@ -23,7 +23,11 @@ function Login () {
       .post('/login', data)
       .then((res) => {
         console.log(res.data);
+        // 로그인 성공 시
+
       })
+      .catch((err) => {console.error(err)})
+
 
   }
 
