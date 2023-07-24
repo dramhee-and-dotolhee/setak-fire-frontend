@@ -22,8 +22,13 @@ function Login () {
     http
       .post('/login', data)
       .then((res) => {
-        console.log(res.data);
-        // 로그인 성공 시
+        // console.log(res.data);
+
+        // 로그인 성공 시 토큰을 localStorage에 저장
+        if(res) {
+          localStorage.setItem('login-token', res.data.accessToken);
+        }
+
 
       })
       .catch((err) => {console.error(err)})
