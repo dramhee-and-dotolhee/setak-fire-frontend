@@ -3,6 +3,7 @@ import StyledInput from "../../common/StyledInput";
 import { BlockButton } from "../../common/StyledButton";
 import { useForm } from "react-hook-form";
 import http from "../../../api/http";
+import { useNavigate } from "react-router-dom";
 
 interface FormValue {
   username: string;
@@ -12,6 +13,8 @@ interface FormValue {
 function Login () {
 
   const { handleSubmit, register } = useForm<FormValue>();
+
+  const navigate = useNavigate();
 
   const login =(data: any) => {
     console.log('로그인!')
@@ -27,6 +30,8 @@ function Login () {
         // 로그인 성공 시 토큰을 localStorage에 저장
         if(res) {
           localStorage.setItem('login-token', res.data.accessToken);
+          navigate('/home');
+
         }
 
 
